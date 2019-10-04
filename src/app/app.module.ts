@@ -1,18 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+//import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CarouselBasicComponent } from './carousel-basic/carousel-basic.component';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OwlModule } from 'ngx-owl-carousel';
+
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DataService} from '../DataService';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CarouselBasicComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    //,NgbModule
+    HttpClientModule,
+   //HttpModule,
+    OwlModule,
+    FormsModule,
+    ReactiveFormsModule ,
+    NgxYoutubePlayerModule.forRoot()
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
