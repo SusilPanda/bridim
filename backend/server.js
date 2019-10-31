@@ -54,6 +54,8 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var User  = require('./models/user.model.js');
+var UserRequest  = require('./models/userRequest.model.js');
+var VisaApplication  = require('./models/visaApplication.model.js');
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -82,8 +84,11 @@ router.use(function(req, res, next) {
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../dist/bridim')));
 
+//const botBuilder = require('claudia-bot-builder');
+
+//module.exports = botBuilder(request => `Thanks for sending ${request.text}`);
 //app.use('/', index);
 /*
 app.use('/users', users);
@@ -183,7 +188,64 @@ router.route('/register')
 
       });
     });
+// user request routes 
+router.route('/userrequests')
+// get all the users (accessed at GET http://localhost:8080/api/users)
+    .get(function (req, res) {
+      console.log("I got a get all Request");
+      UserRequest.find(function (err, userrequests) {
+        if(err)
+          res.send(err);
+        res.json(userrequests);
+      })
+    });
+    //
 
+router.route('/userRequest/:enq_id')
+  .get(function (req, res) {
+    console.log("I got a user request get Request");
+    UserRequest.findById(req.params.enq_id, function (err, userRequest) {
+      if (err)
+        res.send(err);
+      res.json(userRequest);
+    })
+  });
+router.route('/userRequest/save') 
+  .post(function (req, res) {
+    console.log("I got a user Enq Request");
+    console.log(req.body);
+
+    UserRequest.create(req.body, function (err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: "user enq created" });
+
+    });
+  });
+router.route('/uservisastatus/:passportnum')
+  .get(function (req, res) {
+    console.log("got a visa get request");
+    VisaApplication.findOne({passport_num: req.params.passportnum}, function (err, visaApplication) {
+      if (err)
+        res.send(err);
+      res.json(visaApplication);
+    })
+  });
+
+router.route('/uservisastatus')
+  .post(function (req, res) {
+    console.log("got a user visa application create Request");
+    console.log(req.body);
+
+    VisaApplication.create(req.body, function (err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: "user visa application created" });
+
+    });
+  });
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
   res.json({ message: 'hooray! welcome to our api!' });

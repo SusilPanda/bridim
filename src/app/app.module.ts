@@ -13,11 +13,13 @@ import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DataService} from '../DataService';
+import { AdminManagementComponent } from './admin-management/admin-management.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarouselBasicComponent
+    CarouselBasicComponent,
+    AdminManagementComponent
   ],
   imports: [
     BrowserModule,

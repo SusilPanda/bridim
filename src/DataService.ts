@@ -14,12 +14,15 @@ export class DataService {
                    
     }
 
-    saveEnquiry(usr : any) {
-        const body = "";
-        return this.http.post(ServiceConstant.HOST + '/api/save/enquiry/', {
-           user : usr
-          }
+    saveEnquiry(userEnq : any) {
+        //const body = "";
+        return this.http.post(ServiceConstant.HOST + '/api/userrequest/save/', userEnq
+          
         );
+    }
+
+    getVisaStatus(passportNum:string) {
+        return this.http.get<any>(ServiceConstant.HOST + '/api/uservisastatus/'+passportNum);
     }
     
 

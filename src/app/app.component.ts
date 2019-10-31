@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DataService } from 'src/DataService';
 
-interface User {
+interface UserEnq {
   id;
   name;
   emailid;
@@ -14,6 +14,13 @@ interface User {
   prefCountry;
   engLangCertificates;
   status;
+}
+
+interface VisaAppStatus {
+  id;
+  passport_num;
+  name;
+  visa_status;
 }
 
 @Component({
@@ -30,36 +37,74 @@ export class AppComponent {
   emailId;
   status;
   isSubmitted : any= false;
-  users : User[];
+  users : UserEnq[];
+  userEnq : any ;
+  visaAppStatus: VisaAppStatus;
+  selectedPassportNum : string;
+  isVisaStatusCheckActive = false;
+  visaAppStatusError: boolean;
+  visaAppStatusErrorMessage: string;
+  
+  visaStatus =
+  { 
+  passport_num : '1234',
+  name : 'ssss',
+  visa_status:'In Progress' } ;
 
   ngOnInit() { 
     this.formdata = new FormGroup({
       id : new FormControl(''),
-      name : new FormControl(''),
-      emailid : new FormControl(''),
-      password : new FormControl(''),
-      mobilenumber : new FormControl(''),
-      dob : new FormControl(''),
+      first_name : new FormControl(''),
+      last_name : new FormControl(''),
+      email_id : new FormControl(''),
+      mobile_num : new FormControl(''),
+      date_of_birth : new FormControl(''),
       qualification : new FormControl(''),
       applyingFor:new FormControl(''),
       prefCountry: new FormControl(''),
       engLangCertificates: new FormControl(''),
-      status: new FormControl('')
+      status: new FormControl('Requested')
     });
+
+    this.isVisaStatusCheckActive = false;
  } 
 
- onClickSubmit(data) {
+ onClickSubmit(frmdata) {
    
   this.status = "Request Submitted ! We Will Get Back To You Soon.";
    console.log('Inside on click submit');
-   console.log(data);
+   console.log(frmdata);
    this.isSubmitted = true;
-   this.dataService.getAllUsers().subscribe(data => {
+   this.dataService.saveEnquiry(frmdata).subscribe(data => {
     // console.log(data);
-     this.users = data;
-     console.log(this.users);
+     this.userEnq = data;
+     console.log(this.userEnq);
 
    });
+}
+onSearchClickSubmit(data) {
+  //alert("Entered passport id : " + data.passportId); 
+  this.visaAppStatus = null;
+  this.getVisaStatus(data.passportId);
+}
+getVisaStatus(passport : string) {
+  console.log(passport);
+  //console.log(this.selectedPassportNum);
+  this.dataService.getVisaStatus(passport).subscribe(data => {
+    if (null == data) {
+      this.visaAppStatusError = true;
+      this.visaAppStatusErrorMessage = "Passport number Incorrect Or Not yet Applied";
+      this.isVisaStatusCheckActive = true;
+    } else {
+      this.visaAppStatus = data;
+      this.isVisaStatusCheckActive = true;
+    }
+   
+    console.log(data);
+  //  console.log('visa app status : ');
+   // console.log(this.visaAppStatus);
+});
+
 }
 
   carouselOptions = {

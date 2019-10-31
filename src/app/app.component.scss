@@ -12,7 +12,7 @@
 /* ==== overwrite bootstrap standard ==== */
 @import url('../assets/css/overwrite.css');
 @import url('../assets/css/isotope.css');
-@import url('../../node_modules/flexslider/flexslider.css');
+//@import url('../../node_modules/flexslider/flexslider.css');
 //@import url('../assets/css/flexslider.css');
 @import url('../../node_modules/animate.css/animate.min.css');
 /*==========================================================================
@@ -407,18 +407,18 @@ section.section {
   --- Header & menu ----
 =========================== */
 .navbar {
-  position: relative;
+  //position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  //justify-content: ;
   padding: 0;
   //background-color:rgba(5, 42, 62, 1);
-  background-color:rgba(71, 81, 87, 0.781);
+  //background-color:rgba(71, 81, 87, 0.781);
 }
 
 .navbar-expand .navbar-collapse {
-  display: inline-flex !important;
+  //display: inline-flex !important;
   flex-basis: auto;
 }
 
@@ -431,29 +431,28 @@ section.section {
 }
 
 .nav-item {
-	display: table-cell;
+	//display: table-cell;
 	height: 100%;
 	line-height: 100%;
 	vertical-align: middle;
-	color: rgb(41, 39, 39);
-	//font-size: 14px;
+	//color: rgb(41, 39, 39);
+	font-size: 14px;
 	letter-spacing: .1em;
-	text-transform: uppercase;
+  text-transform: uppercase;
+  padding-left: 10px;
 }
-.dropdown-menu {
-  background-color: rgb(48, 46, 46);
+
+.navbar-nav .dropdown-menu {
+  position: absolute;
+  float: none;
 }
 
 .dropdown-menu a:hover{
   color: rgb(44, 43, 43);
 }
 
-.navbar-light .navbar-nav .nav-link {
-  color: #fff;
-}
-
 .navbar .nav-link {
-	display: table-cell;
+	//display: table-cell;
 	height: 100%;
 	line-height: 100%;
 	vertical-align: middle;
@@ -468,10 +467,11 @@ section.section {
 }
 
 .navbar-nav {
-  display: block;
+  display: flex;
+  flex-direction: row;
 	float: right;
 	margin-bottom: 0;
-	padding-bottom:0;
+	padding-left:5px;
 }
 
 .navbar-nav a{
@@ -479,7 +479,7 @@ section.section {
 	margin-bottom: 0;
   padding-bottom:0;
   font-weight: bold;
-  color: #fff;
+  //color: #fff;
 }
 .navbar .navbar-nav > .active > a {
   color: rgb(238, 82, 82);
@@ -495,12 +495,20 @@ section.section {
 .navbar-toggle {
 	padding: 0;
 	margin: 0;
-	width: 80px;
+	//width: 80px;
+}
+
+.navbar-toggler {
+	padding: 0;
+  margin: 0;
+  display: inline;
+	//width: 80px;
 }
 
 .navbar-collapse.in {
-	margin-top: -5px !important;
+	margin-top: 10px !important;
 }
+
 
 
 /*===========================
@@ -549,8 +557,8 @@ section.section {
 .intro-content  p {
   color: #fff;
   //margin-bottom: 30px;
-  font-size: 26px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 00;
   width: 50%;
   //margin: 30px;
   
@@ -1021,14 +1029,34 @@ Media queries
 ========================================= */
 @media (min-width: 992px) {
 .navbar-expand-md .navbar-collapse {
-    /* display: flex!important; */
+   // display: flex!important;
     flex-basis: auto;
 }
 }
 @media (min-width: 959px) and (max-width: 1199px) {
 	.navbar-nav {
 		margin-top: 20px;
-	}
+  }
+ 
+}
+
+@media (min-width: 400px) and (max-width: 806px) {
+	.navbar-nav {
+    flex-flow: column nowrap;
+		margin-top: 20px;
+  }
+  .navbar-toggler{
+		display: inline;
+  }
+  .collapse.show {
+   display: list-item;
+  }
+ 
+  .nav-item {
+      flex-flow: row nowrap;
+      display: inline-flex;
+  }
+  
 }
 
 @media only screen and (min-device-width : 979px) and (max-device-width : 1024px)  {

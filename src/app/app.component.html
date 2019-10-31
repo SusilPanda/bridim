@@ -1,70 +1,73 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="fluid-container">
+
     <!--<div class="jumbotron" >
  
     <img  alt="Angular Logo" src="./assets/logo.png"/>
   </div> -->
-  <section id="header" class="appear">
-    
-  <nav class="navbar navbar-expand navbar-dark navbar-fixed-top">
-      <a class="navbar-brand" href="#">
-          <img data-0="width:100%;" data-300=" width:120%;" src="../assets/vob/vob_logo_white_org.png" alt="">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#enqModal" >Immigration</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" href="#" data-toggle="modal" data-target="#enqModal">Enquiry</a>
-          </li>
-          <li class="nav-item dropdown mr-sm-2">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ABOUT US
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#about">About</a>
-              <a class="dropdown-item" href="#portfolio">Portfolio</a>
-              <a class="dropdown-item" href="#testimonial">Testimonial</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#gallery">Gallery</a>
-            </div>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link" href="https://wa.me/919540422545/?text=urlencodedtext" target="_blank">
-           <!-- <i class="fa fa-whatsapp"></i>-->
-           <img src="../assets/vob/whatsapp_icon_logo_1.png" alt="">
+  <nav class="navbar bg-light navbar-light fixed-top">
+    <a class="navbar-brand" href="#">
+        <img  src="../assets/logo_resize.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#enqModal" >Immigration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#enqModal">Enquiry</a>
+        </li>
+        <li class="nav-item dropdown mr-sm-2">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ABOUT US
           </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-              <a class="nav-link">
-                <input  type="search" placeholder="Passport Number" aria-label="Search">
-              </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Search</button>
-              </a>
-          </li>
-        </ul>
-       
-       <!-- <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Passport Number" aria-label="Search">
-          <button class="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#myModal">Search</button>
-        </form> -->
-      </div>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#about">About</a>
+            <a class="dropdown-item" href="#portfolio">Portfolio</a>
+            <a class="dropdown-item" href="#testimonial">Testimonial</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#gallery">Gallery</a>
+          </div>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link mar-left30" href="https://wa.me/919540422545/?text=urlencodedtext" target="_blank">
+         <!-- <i class="fa fa-whatsapp"></i>-->
+         <img src="../assets/vob/whatsapp_icon_logo_1.png" alt="">
+        </a>
+        </li>
      
-    </nav>
-  </section>
+      <form #userVisa = "ngForm" (ngSubmit) = "onSearchClickSubmit(userVisa.value)"> 
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link">
+              <input  type="search" placeholder="Passport Number" name="passportId" ngModel aria-label="Search">
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">
+              <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#myModal">Search</button>
+            </a>
+        </li>
+      </ul>
+      </form>
+      </ul>
+      <!--<form #userVisa = "ngForm" (ngSubmit) = "onSearchClickSubmit(userVisa.value)"> 
+        
+          <input type = "search" name = "passportId" placeholder = "passport number" ngModel> 
+          
+          <button class="btn btn-primary my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#myModal">Search</button>            
+       </form> -->
+     
+    </div>
+   
+  </nav>
+  <div class="fluid-container">
   <!--<section id="header" class="appear">
   <div class="navbar fixed-top navbar-fixed-top navbar-static-top sps sps--abv "
     data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(5, 42, 62, 1);">
@@ -301,18 +304,36 @@
           </div>
   
           <div class="col-md-6 about-content">
-            <h2 class="about-title">We provide great services and ideass</h2>
+            <h2 class="about-title">We provide great services and ideas</h2>
             <p class="about-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-              in reprehenderit in voluptate
+              We believe to create & Seize every available opportunity, let it be for the academic growth of a student who is thinking to pursue higher education overseas or an international institution who is looking for an opportunity to extend their academic approach from their national frontiers.
+            </p>
+              <p class="about-text"> 
+              Our organization has an expertise of serving in the customer service industry for well over a decade now. Since the dawn of our Establishment back in 2013 we have strived for expansion throughout the Indian subcontinent, which has lead us to where we are now with 2 branches throughout the Punjab & Haryana (India) and an office in Canada & UK. With over 1200 happy & satisfied clients across our international borders we have provided services of the following:            
             </p>
             <p class="about-text">
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-              id est laborum
+              •	International Studies</p>
+              <p class="about-text">
+              •	International Settlement</p>
+              <p class="about-text">
+              •	Visas: Study, Tourist, Permanent Residency</p>
+              <p class="about-text">
+              •	Pre Boarding assistance</p>
+              <p class="about-text">
+              •	IELTS & ESL Training</p>
+              <p class="about-text">
+              •	Education guidance
             </p>
             <p class="about-text">
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt molli.
+                Our Experts always prompt in answering career and education related queries. Students can ask questions, participate in discussions and stay updated with latest news and articles related to their education interest.
             </p>
+            <p class="about-text">
+                We are a huge family of more than 30 employees who work towards same dedication and we all are here to help you fulfill your desired dream. We have an elaborative list of clients who have successfully migrated.
+              </p>
+              <p class="about-text">   
+                We have already created a thousand success stories. Let us draft another success story together. Let us help you in achieving your goal of completing higher studies from countries like USA, UK, CANADA, AUSTRALIA, NEWZEALAND, SINGAPORE, EASTERN EUROPEAN & SCHENGEN Countries.
+                
+             </p>
           </div>
         </div>
       </div>
@@ -1195,8 +1216,14 @@
         </div>
   
         <!-- Modal body -->
-        <div class="modal-body">Passport Number : XXX123
-        <div>Status : Approved </div>
+        <div class="modal-body">
+          <div *ngIf="isVisaStatusCheckActive && !visaAppStatusError">
+            <div>Passport Number : {{visaAppStatus.passport_num}}</div>
+            <div>Status : {{visaAppStatus.visa_status}} </div>
+          </div>
+          <div *ngIf="visaAppStatusError">
+              <div>Status : {{visaAppStatusErrorMessage}} </div>
+          </div>
         </div>
   
         <!-- Modal footer -->
@@ -1253,10 +1280,7 @@
     </div>
   </div>
   
-  <div class="text-center">
-    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm">Launch
-      Modal Contact Form</a>
-  </div>
+ 
     <!-- Enquiry Model -->
   <div id="enqModal" class="modal fade" role="dialog" >
       <div class="modal-dialog">
@@ -1293,16 +1317,25 @@
                   <i class="fa fa-users prefix grey-text"></i>
                 </div>
                 <div class="col-sm-8">
-                  <input type="text" name="name" formControlName="name" placeholder="Name" required autofocus>
+                  <input type="text" name="fname" formControlName="first_name" placeholder="First Name" required autofocus>
                 </div>
               </div>
               <br>
+              <div class="row">
+                  <div class="col-sm-1 mar-left30">
+                    <i class="fa fa-users prefix grey-text"></i>
+                  </div>
+                  <div class="col-sm-8">
+                    <input type="text" name="lname" formControlName="last_name" placeholder="Last Name" required autofocus>
+                  </div>
+                </div>
+                <br>
               <div class="row">
                 <div class="col-sm-1 mar-left30">
                   <i class="fa fa-envelope prefix grey-text"></i>
                 </div>
                 <div class="col-sm-8">
-                  <input type="email" formControlName="emailid" placeholder="Email Address" required>
+                  <input type="email" formControlName="email_id" placeholder="Email Address" required>
                 </div>
               </div>
               <br>
@@ -1311,7 +1344,7 @@
                   <i class="fa fa-calendar prefix grey-text"></i>
                 </div>
                 <div class="col-sm-8">
-                  <input type="date" formControlName="dob" placeholder="DateOfBirth" required>
+                  <input type="date" formControlName="date_of_birth" placeholder="DateOfBirth" required>
                 </div>
               </div>
               <br>
@@ -1320,7 +1353,7 @@
                   <i class="fa fa-address-book"></i>
                 </div>
                 <div class="col-sm-8">
-                  <input type="number" formControlName="mobilenumber" placeholder="Mobile Number" required>
+                  <input type="number" formControlName="mobile_num" placeholder="Mobile Number" required>
                 </div>
               </div>
               <br>
