@@ -84,7 +84,7 @@ router.use(function(req, res, next) {
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../dist/bridim')));
+app.use(express.static(path.join(__dirname, 'dist/bridim')));
 
 //const botBuilder = require('claudia-bot-builder');
 
