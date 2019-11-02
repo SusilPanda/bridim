@@ -382,7 +382,7 @@ section.section {
 }
 
 #testimonials{
-    background-image: url(../assets/vob/batur2.jpg);
+    background-image: url(../assets/vob/beach_bg.jpg);
     //opacity: 0.5;
 }
 
@@ -476,7 +476,7 @@ section.section {
 
 .navbar-nav a{
 	//float: right;
-	margin-bottom: 0;
+	//margin-bottom: 0;
   padding-bottom:0;
   font-weight: bold;
   //color: #fff;
@@ -509,7 +509,24 @@ section.section {
 	margin-top: 10px !important;
 }
 
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
 
+.card-img-top {
+  width: 100%;
+  //height: 40vh;
+  object-fit: cover;
+ //height: 15rem
+  }
 
 /*===========================
   --- Intro ----
@@ -559,7 +576,7 @@ section.section {
   //margin-bottom: 30px;
   font-size: 16px;
   font-weight: 00;
-  width: 50%;
+  width: 90%;
   //margin: 30px;
   
 }
@@ -1394,7 +1411,19 @@ a.scrollup{
     font-weight: 700;
     font-size: 28px;
   }
+  #about .about-name {
+    color: #333;
+    font-weight: 300;
+    font-size: 20px;
+  }
   
+  #about .about-question {
+    color: #333;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    font: bold;
+  }
   #about .about-text {
     line-height: 26px;
     margin-bottom: 15px;
