@@ -19,8 +19,8 @@ app.use(function(req, res, next) {
 app.use(cors());
 //app.use(bodyParser.json());
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'pug');
 
 //app.use(logger('dev'));
 app.use(express.json());
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-app.use('/', indexRouter);
+//app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
@@ -84,8 +84,19 @@ router.use(function(req, res, next) {
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../dist/bridim')));
 
+/*router.route('/app/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../dist/bridim/index.html'))
+});
+*/
+//app.use(express.static(path.join(__dirname, '../dist/bridim')));
+
+app.use(express.static(path.join(__dirname,'../dist/bridim')));
+
+app.use('/',(req,res)=>{
+
+    res.sendFile(path.join(__dirname,'../dist/bridim/index.html'))
+});
 //const botBuilder = require('claudia-bot-builder');
 
 //module.exports = botBuilder(request => `Thanks for sending ${request.text}`);
@@ -104,6 +115,7 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+  console.log("inside error req");
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -314,7 +326,7 @@ function onError(error) {
   }
 }
 app.listen(8080, function () {
-  console.log('Listening on port 5000!');
+  console.log('Listening on port 8080!');
 });
 ///server.listen(port);
 //server.on('error', onError);
