@@ -93,7 +93,7 @@ router.use(function(req, res, next) {
 
 app.use(express.static(path.join(__dirname,'../dist/bridim')));
 
-app.use('/',(req,res)=>{
+app.use('/app/*',(req,res)=>{
 
     res.sendFile(path.join(__dirname,'../dist/bridim/index.html'))
 });
