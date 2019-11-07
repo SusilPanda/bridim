@@ -10,11 +10,11 @@
 /* === fontawesome === */
 @import url('../../node_modules/font-awesome/css/font-awesome.min.css');
 /* ==== overwrite bootstrap standard ==== */
-@import url('../assets/css/overwrite.css');
-@import url('../assets/css/isotope.css');
+//@import url('../assets/css/overwrite.css');
+//@import url('../assets/css/isotope.css');
 //@import url('../../node_modules/flexslider/flexslider.css');
 //@import url('../assets/css/flexslider.css');
-@import url('../../node_modules/animate.css/animate.min.css');
+//@import url('../../node_modules/animate.css/animate.min.css');
 
 /*==========================================================================
   General
@@ -22,7 +22,7 @@
 body {
 	color:#777;
 	background: #f7f7f7;
-	line-height: 1.6em;
+	//line-height: 1.6em;
 }
 
 .clear {
@@ -1999,19 +1999,19 @@ Testing Nav Menu
 .feedback {
   background-color : #31B0D5;
   color: white;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 4px;
   border-color: #46b8da;
 }
 
 #mybutton {
   position: fixed;
-  //bottom: -4px;
-  left: 1px;
+  bottom: 2%;
+  right: 2%;
   //height: 120px;
   //width: 5px;
-  -webkit-transform: rotate(-90deg); 
-     -moz-transform: rotate(-90deg);   
+  //-webkit-transform: rotate(-90deg); 
+  //   -moz-transform: rotate(-90deg);   
 
 }
 .icon-bar {
