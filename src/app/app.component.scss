@@ -418,10 +418,8 @@ section.section {
   //background-color:rgba(71, 81, 87, 0.781);
 }
 
-.navbar-expand .navbar-collapse {
-  //display: inline-flex !important;
-  flex-basis: auto;
-}
+
+
 .fixed-top {
   /* position: fixed; */
   top: 0;
@@ -446,7 +444,7 @@ section.section {
 	font-size: 14px;
 	letter-spacing: .1em;
   text-transform: uppercase;
-  padding-left: 20px;
+  //padding-left: 20px;
 }
 
 .navbar-nav .dropdown-menu {
@@ -477,7 +475,7 @@ section.section {
 .navbar-nav {
   display: flex;
   flex-direction: row;
-	float: right;
+  float: right;
 	margin-bottom: 0;
 	padding-left:5px;
 }
@@ -488,11 +486,6 @@ section.section {
   padding-bottom:0;
   font-weight: bold;
   //color: #fff;
-}
-
-.navbar-right {
-  float:right;
-
 }
 
 .navbar .navbar-nav > .active > a {
@@ -515,7 +508,7 @@ section.section {
 .navbar-toggler {
 	padding: 0;
   margin: 0;
-  display: inline;
+  display: none;
 	//width: 80px;
 }
 
@@ -542,6 +535,17 @@ section.section {
  //height: 15rem
   }
 
+@media (min-width: 768px) {
+.navbar-expand-md .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+}
+}
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 0;
+  align-items: center;
+}
 /*===========================
   --- Intro ----
 =========================== */
@@ -1071,18 +1075,7 @@ a.socialIcon:hover, .socialHoverClass {
 /* ========================================
 Media queries
 ========================================= */
-@media (min-width: 992px) {
-.navbar-expand-md .navbar-collapse {
-   // display: flex!important;
-    flex-basis: auto;
-}
-}
-@media (min-width: 959px) and (max-width: 1199px) {
-	.navbar-nav {
-		margin-top: 20px;
-  }
- 
-}
+
 
 @media (min-width: 400px) and (max-width: 806px) {
 	.navbar-nav {
@@ -1102,14 +1095,6 @@ Media queries
   }
   
 }
-
-@media only screen and (min-device-width : 979px) and (max-device-width : 1024px)  {
-
-	.navbar-nav {
-		margin-top: 20px;
-	}
-}
-
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
 
@@ -2033,5 +2018,15 @@ Testing Nav Menu
 .imgbutton {
   position: fixed;
   //bottom: -4px;
-  left: 1px;
+  left: -4px;
+}
+
+@media (min-width: 400px) {
+  .all-news-btn {width: 100%; font-size: 4.25em; }
+  .imgbutton {
+    position: fixed;
+    //bottom: -4px;
+    left: -2px;
+    //length: 3px;
+  }
 }
