@@ -34,9 +34,11 @@ export class AppComponent {
   title = 'bridim';
   images1 = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
   formdata;
+  contactformdata;
   emailId;
   status;
   isSubmitted : any= false;
+  isContactSubmitted: any = false;
   users : UserEnq[];
   userEnq : any ;
   visaAppStatus: VisaAppStatus;
@@ -67,6 +69,14 @@ export class AppComponent {
     });
 
     this.isVisaStatusCheckActive = false;
+
+    this.contactformdata = new FormGroup({
+      id : new FormControl(''),
+      first_name : new FormControl(''),
+      last_name : new FormControl(''),
+      email_id : new FormControl(''),
+      mobile_num : new FormControl('')
+    });
  } 
 
  onClickSubmit(frmdata) {
@@ -82,6 +92,21 @@ export class AppComponent {
 
    });
 }
+
+onContactClickSubmit(contactfrmdata) {
+   
+  this.status = "Request Submitted ! We Will Get Back To You Soon.";
+   console.log('Inside on click submit');
+   console.log(contactfrmdata);
+   this.isContactSubmitted = true;
+   this.dataService.saveEnquiry(contactfrmdata).subscribe(data => {
+    // console.log(data);
+     this.userEnq = data;
+     console.log(this.userEnq);
+
+   });
+}
+
 onSearchClickSubmit(data) {
   //alert("Entered passport id : " + data.passportId); 
   this.visaAppStatus = null;

@@ -232,6 +232,7 @@ router.route('/userRequest/save')
         res.send(err);
       }
       res.json({ message: "user enq created" });
+      sendEmail(JSON.stringify(req.body));
 
     });
   });
@@ -267,6 +268,40 @@ router.get('/', function(req, res) {
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
+// Email setup
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'Team29ARSSP@gmail.com',
+    pass: 'mkoubliylgeuuyqm'
+  }
+});
+
+var mailOptions = {
+  from: 'Team29ARSSP@gmail.com',
+  to: 'susilchand@gmail.com',
+  subject: 'User Enq',
+  text: 'That was easy!'
+};
+
+function sendEmail(content) {
+  transporter.sendMail({
+    from: 'Team29ARSSP@gmail.com',
+    to: 'susilchand@gmail.com',
+    subject: 'User Enq',
+    text: content
+  }, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+};
+
+
+// End of Email Setup
 // End of earlier code
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
@@ -325,7 +360,7 @@ function onError(error) {
       throw error;
   }
 }
-app.listen(8080, function () {
+app.listen(5000, function () {
   console.log('Listening on port 8080!');
 });
 ///server.listen(port);
