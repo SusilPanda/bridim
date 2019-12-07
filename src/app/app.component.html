@@ -935,13 +935,30 @@
   <section id="subscribe">
       <div class="container wow fadeInUp">
         <div class="row">
-          <div class="col-md-8">
+          <!--<div class="col-md-8">
             <h3 class="subscribe-title">Subscribe For Updates</h3>
             <p class="subscribe-text">Join our 1000+ subscribers and get access to the latest offers, visa updates , expansion and much more!</p>
           </div>
           <div class="col-md-4 subscribe-btn-container">
             <a class="subscribe-btn" href="#">Subscribe Now</a>
-          </div>
+          </div> -->
+          <marquee behavior="scroll" direction="left">
+              <div class="marqueestyle">
+              <img src="../assets/vob/universitylogo/Anglia_Ruskin_logo.png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/Brunel University.png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/coventry_university.png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/crested-wm-full-colour.png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/download (1).png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/download.png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/Griffith-University-Logo.png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/images (1).jpeg" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/images (1).png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/images (2).jpeg" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/images (2).png" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/images (3).jpeg" width="120" height="80" alt="australia">
+              <img src="../assets/vob/universitylogo/images (3).png" width="120" height="80" alt="australia">
+              </div>
+          </marquee>
         </div>
       </div>
     </section>
@@ -1716,25 +1733,27 @@
           <div class="modal-body mx-3">
             <div class="md-form mb-3">
               <i class="fa fa-users prefix grey-text"></i>
-              <input type="text" id="form34" name="name" formControlName="name" placeholder="Name" required autofocus>
-              <label data-error="wrong" data-success="right" for="form34">Your name</label>
+              <input class="mar-left30" type="text" id="form34" name="name" formControlName="name" placeholder="Name" required autofocus>
+              <!--<label data-error="wrong" data-success="right" for="form34">Your name</label>-->
             </div>
             <div class="md-form mb-3">
               <i class="fa fa-envelope prefix grey-text"></i>
-              <input type="email" id="form29" name="email" formControlName="email" placeholder="Email" required autofocus>
-              <label data-error="wrong" data-success="right" for="form29">Your email</label>
+              <input class="mar-left30" type="email" id="form29" name="email" formControlName="email" placeholder="Email" required autofocus>
+              <!--<label data-error="wrong" data-success="right" for="form29">Your email</label>-->
             </div>
     
             <div class="md-form mb-3">
               <i class="fa fa-tag prefix grey-text"></i>
-              <input type="text" id="form32" name="subject" formControlName="subject" placeholder="Subject" required autofocus>
-              <label data-error="wrong" data-success="right" for="form32">Subject</label>
+              <input class="mar-left30" type="text" id="form32" name="subject" formControlName="subject" placeholder="Subject" required autofocus>
+              <!--<label data-error="wrong" data-success="right" for="form32">Subject</label>-->
             </div>
     
             <div class="md-form">
               <i class="fa fa-pencil prefix grey-text"></i>
-              <textarea type="text" id="form8" class="md-textarea" rows="4"  name="message" formControlName="message" placeholder="Message" required autofocus></textarea>
-              <label data-error="wrong" data-success="right" for="form8">Your message</label>
+              <span class="mar-left30">
+              <textarea type="text" id="form8" class="md-textarea" rows="4" style="min-width: 80%;" name="message" formControlName="message" placeholder="Message" required autofocus></textarea>
+              <!--<label data-error="wrong" data-success="right" for="form8">Your message</label>-->
+            </span>
             </div>
           </div>
       </form>
