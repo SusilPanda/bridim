@@ -2069,6 +2069,34 @@ Testing Nav Menu
   }
 }
 
+@media (min-width: 806px) and (max-width: 1358px)  {
+  .all-news-btn {width: 100%; font-size: 4.25em; }
+  .imgbutton {
+    position: fixed;
+    //bottom: -4px;
+    left: -2px;
+    //length: 3px;
+  }
+  .feedback {
+    background-color : #31B0D5;
+    color: black;
+    padding: 1%;
+    height: 3%;
+    //border-radius: 4px;
+    border-color: #46b8da;
+  }
+  #mybutton {
+    position: fixed;
+    bottom: 0%;
+    right: 3%;
+    //height: 3%;
+    width: 15%;
+    //-webkit-transform: rotate(-90deg); 
+    //   -moz-transform: rotate(-90deg);   
+  
+  }
+}
+
 .mrqimg {
   width:"120" ;
   height:"80";
@@ -2079,3 +2107,6 @@ Testing Nav Menu
 	background-color: rgb(241, 237, 237);
 	border-color: #000;
 }
+
+// Marquee
+
