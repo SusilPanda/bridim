@@ -2002,21 +2002,21 @@ Testing Nav Menu
 
 // Fixed button contact us
 .feedback {
-  //background-color : #31B0D5;
+  background-color : #31B0D5;
   color: black;
-  //padding: 1%;
-  //border-radius: 4px;
+  padding: 1%;
+  border-radius: 4px;
   border-color: #46b8da;
 }
 
 #mybutton {
   position: fixed;
-  top: 0%;
-  right: 1%;
+  bottom: 0%;
+  right: 3%;
   //height: 120px;
-  //width: 5px;
+  width: 10%;
   //-webkit-transform: rotate(-90deg); 
-  //   -moz-transform: rotate(-90deg);   
+  // -moz-transform: rotate(-90deg);   
 
 }
 .icon-bar {
@@ -2041,13 +2041,31 @@ Testing Nav Menu
   left: -4px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 344px) and (max-width: 806px)  {
   .all-news-btn {width: 100%; font-size: 4.25em; }
   .imgbutton {
     position: fixed;
     //bottom: -4px;
     left: -2px;
     //length: 3px;
+  }
+  .feedback {
+    background-color : white;
+    color: black;
+    padding: 1%;
+    height: 3%;
+    //border-radius: 4px;
+    border-color: #46b8da;
+  }
+  #mybutton {
+    position: fixed;
+    top: 0%;
+    right: 1%;
+    height: 3%;
+    width: 37%;
+    //-webkit-transform: rotate(-90deg); 
+    //   -moz-transform: rotate(-90deg);   
+  
   }
 }
 
@@ -2056,50 +2074,6 @@ Testing Nav Menu
   height:"80";
 }
 
-.example1 {
-  height: 50px;	
-  overflow: hidden;
-  position: relative;
- }
- .example1 h3 {
-  font-size: 3em;
-  color: limegreen;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  line-height: 50px;
-  text-align: center;
-  /* Starting position */
-  -moz-transform:translateX(100%);
-  -webkit-transform:translateX(100%);	
-  transform:translateX(100%);
-  /* Apply animation to this element */	
-  -moz-animation: example1 15s linear infinite;
-  -webkit-animation: example1 15s linear infinite;
-  animation: example1 15s linear infinite;
- }
- /* Move it (define the animation) */
- @-moz-keyframes example1 {
-  0%   { -moz-transform: translateX(100%); }
-  100% { -moz-transform: translateX(-100%); }
- }
- @-webkit-keyframes example1 {
-  0%   { -webkit-transform: translateX(100%); }
-  100% { -webkit-transform: translateX(-100%); }
- }
- @keyframes example1 {
-  0%   { 
-  -moz-transform: translateX(100%); /* Firefox bug fix */
-  -webkit-transform: translateX(100%); /* Firefox bug fix */
-  transform: translateX(100%); 		
-  }
-  100% { 
-  -moz-transform: translateX(-100%); /* Firefox bug fix */
-  -webkit-transform: translateX(-100%); /* Firefox bug fix */
-  transform: translateX(-100%); 
-  }
- }
 
  .btn .btn-secondary .custom-btn {
 	background-color: rgb(241, 237, 237);
