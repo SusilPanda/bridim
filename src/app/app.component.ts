@@ -72,10 +72,11 @@ export class AppComponent {
 
     this.contactformdata = new FormGroup({
       id : new FormControl(''),
-      first_name : new FormControl(''),
-      last_name : new FormControl(''),
-      email_id : new FormControl(''),
-      mobile_num : new FormControl('')
+      name : new FormControl(''),
+      email : new FormControl(''),
+      mobileNumber : new FormControl(''),
+      subject : new FormControl(''),
+      message : new FormControl('')
     });
  } 
 
@@ -95,14 +96,14 @@ export class AppComponent {
 
 onContactClickSubmit(contactfrmdata) {
    
-  this.status = "Request Submitted ! We Will Get Back To You Soon.";
-   console.log('Inside on click submit');
+  //this.status = "Request Submitted ! We Will Get Back To You Soon.";
+   console.log('Inside on click contact submit');
    console.log(contactfrmdata);
    this.isContactSubmitted = true;
-   this.dataService.saveEnquiry(contactfrmdata).subscribe(data => {
-    // console.log(data);
-     this.userEnq = data;
-     console.log(this.userEnq);
+   this.dataService.bookAnAppointment(contactfrmdata).subscribe(data => {
+     console.log(data);
+     this.contactformdata = data;
+     console.log(this.contactformdata);
 
    });
 }

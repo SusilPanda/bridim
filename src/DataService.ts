@@ -21,6 +21,13 @@ export class DataService {
         );
     }
 
+    bookAnAppointment(contactfrmdata : any) {
+        //const body = "";
+        return this.http.post(ServiceConstant.HOST + '/api/userrequest/save/', contactfrmdata
+          
+        );
+    }
+
     getVisaStatus(passportNum:string) {
         return this.http.get<any>(ServiceConstant.HOST + '/api/uservisastatus/'+passportNum);
     }

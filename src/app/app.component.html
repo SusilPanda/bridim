@@ -71,8 +71,9 @@
       </ul>
       
     </div>
-    <div class="col-md-3" id="mybutton" data-spy="affix" data-offset-top="205">
-        <p class="feedback"><i class="fa fa-phone"></i>+91 9855989007</p>
+    
+    <div class="btn-group feedback" id="mybutton" data-spy="affix" data-offset-top="205">
+       <div><i class="fa fa-phone"></i><span class="text">+91 9855989007</span></div>
     </div>
   </div>
   </nav>
@@ -1732,7 +1733,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold">Contact US</h4>
+          <h4 class="modal-title w-100 font-weight-bold">Book An Appointment</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -1749,7 +1750,11 @@
               <input class="mar-left30" type="email" id="form29" name="email" formControlName="email" placeholder="Email" required autofocus>
               <!--<label data-error="wrong" data-success="right" for="form29">Your email</label>-->
             </div>
-    
+            <div class="md-form mb-3">
+                <i class="fa fa-phone prefix grey-text"></i>
+                <input class="mar-left30" type="number" id="form29" name="mobileNumber" formControlName="mobileNumber" placeholder="Mobile Number" required autofocus>
+                <!--<label data-error="wrong" data-success="right" for="form29">Your email</label>-->
+              </div>
             <div class="md-form mb-3">
               <i class="fa fa-tag prefix grey-text"></i>
               <input class="mar-left30" type="text" id="form32" name="subject" formControlName="subject" placeholder="Subject" required autofocus>
