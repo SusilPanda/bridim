@@ -56,6 +56,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var User  = require('./models/user.model.js');
 var UserRequest  = require('./models/userRequest.model.js');
 var VisaApplication  = require('./models/visaApplication.model.js');
+var UserAppointment  = require('./models/userAppointment.model.js');
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -236,6 +237,40 @@ router.route('/userRequest/save')
 
     });
   });
+// User book an appointment mapping
+router.route('/userappointment/:booking_id')
+  .get(function (req, res) {
+    console.log("I got a user request get Request");
+    UserAppointment.findById(req.params.booking_id, function (err, userAppontment) {
+      if (err)
+        res.send(err);
+      res.json(userAppontment);
+    })
+  });
+  router.route('/userappointment')
+  .get(function (req, res) {
+    console.log("I got a user request get Request");
+    UserAppointment.find(function (err, userAppontment) {
+      if (err)
+        res.send(err);
+      res.json(userAppontment);
+    })
+  })
+router.route('/userappointment/save') 
+  .post(function (req, res) {
+    console.log("I got a user booking appointment Request");
+    console.log(req.body);
+
+    UserAppointment.create(req.body, function (err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: "user appointment created" });
+      sendEmail(JSON.stringify(req.body));
+
+    });
+  });
+
 router.route('/uservisastatus/:passportnum')
   .get(function (req, res) {
     console.log("got a visa get request");

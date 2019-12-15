@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/DataService';
 
 interface UserEnq {
@@ -46,6 +46,7 @@ export class AppComponent {
   isVisaStatusCheckActive = false;
   visaAppStatusError: boolean;
   visaAppStatusErrorMessage: string;
+  submitted:boolean=false;
   
   visaStatus =
   { 
@@ -72,11 +73,11 @@ export class AppComponent {
 
     this.contactformdata = new FormGroup({
       id : new FormControl(''),
-      name : new FormControl(''),
-      email : new FormControl(''),
-      mobileNumber : new FormControl(''),
-      subject : new FormControl(''),
-      message : new FormControl('')
+      name : new FormControl('', Validators.required),
+      email : new FormControl('', Validators.required),
+      mobileNumber : new FormControl('', Validators.required),
+      subject : new FormControl('', Validators.required),
+      message : new FormControl('', Validators.required)
     });
  } 
 
@@ -96,7 +97,6 @@ export class AppComponent {
 
 onContactClickSubmit(contactfrmdata) {
    
-  //this.status = "Request Submitted ! We Will Get Back To You Soon.";
    console.log('Inside on click contact submit');
    console.log(contactfrmdata);
    this.isContactSubmitted = true;

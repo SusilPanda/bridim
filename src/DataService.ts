@@ -21,11 +21,25 @@ export class DataService {
         );
     }
 
+    getUserEnquiry(userEnq : any) {
+        //const body = "";
+        return this.http.get(ServiceConstant.HOST + '/api/userrequest/save/', userEnq._id
+        );
+    }
+
     bookAnAppointment(contactfrmdata : any) {
         //const body = "";
-        return this.http.post(ServiceConstant.HOST + '/api/userrequest/save/', contactfrmdata
+        return this.http.post(ServiceConstant.HOST + '/api/userappointment/save/', contactfrmdata
           
         );
+    }
+
+    getBookedAppointment(contactfrmdata : any) {
+        return this.http.get(ServiceConstant.HOST + '/api/userappointment', contactfrmdata._id);
+    }
+
+    getAllBookedAppointment() {
+        return this.http.get(ServiceConstant.HOST + '/api/userappointment');
     }
 
     getVisaStatus(passportNum:string) {
