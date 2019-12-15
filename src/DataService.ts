@@ -29,7 +29,7 @@ export class DataService {
 
     bookAnAppointment(contactfrmdata : any) {
         //const body = "";
-        return this.http.post(ServiceConstant.HOST + '/api/userappointment/save/', contactfrmdata
+        return this.http.post(ServiceConstant.HOST + '/api/userappointment/save', contactfrmdata
           
         );
     }

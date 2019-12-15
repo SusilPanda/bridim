@@ -255,7 +255,7 @@ router.route('/userappointment/:booking_id')
         res.send(err);
       res.json(userAppontment);
     })
-  })
+  });
 router.route('/userappointment/save') 
   .post(function (req, res) {
     console.log("I got a user booking appointment Request");

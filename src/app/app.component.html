@@ -1738,6 +1738,10 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <div id="success"  *ngIf="conFormSubmittedSuccess">
+            <i class="fa fa-check fa-2x animated rotateIn"></i>
+            <p> {{status}} </p>
+        </div>
         <form [formGroup]="contactformdata" (ngSubmit)="onContactClickSubmit(contactformdata.value)">
           <div class="modal-body mx-3">
             <div class="md-form mb-3">
@@ -1818,7 +1822,7 @@
                  <input type = "submit" class = "forsubmit" value = "Log In"> 
               </form> 
            </div> -->
-           <div id="success"  *ngIf="isSubmitted">
+           <div id="success"  *ngIf="submittedSuccess">
            <i class="fa fa-check fa-2x animated rotateIn"></i>
            <p> {{status}} </p>
           </div>
@@ -1831,7 +1835,11 @@
                 </div>
                 <div class="col-sm-8">
                   <input type="text" name="fname" formControlName="first_name" placeholder="First Name" required autofocus>
+                  <div  class="invalidfeedback" *ngIf="isSubmitted && formdata.controls.first_name.errors">
+                      <div *ngIf="formdata.controls.first_name.errors.required">First Name is required</div>
+                  </div>
                 </div>
+                
               </div>
               <br>
               <div class="row">
@@ -1849,7 +1857,11 @@
                 </div>
                 <div class="col-sm-8">
                   <input type="email" formControlName="email_id" placeholder="Email Address" required>
+                  <div  class="invalidfeedback" *ngIf="isSubmitted && formdata.controls.email_id.errors">
+                      <div *ngIf="formdata.controls.email_id.errors.required">Email Id is required</div>
+                  </div>
                 </div>
+                
               </div>
               <br>
               <div class="row">
@@ -1867,7 +1879,11 @@
                 </div>
                 <div class="col-sm-8">
                   <input type="number" formControlName="mobile_num" placeholder="Mobile Number" required>
+                  <div  class="invalidfeedback" *ngIf="isSubmitted && formdata.controls.mobile_num.errors">
+                      <div *ngIf="formdata.controls.mobile_num.errors.required">Mobile Number is required</div>
+                  </div>
                 </div>
+                
               </div>
               <br>
               <div class="row">
@@ -1885,6 +1901,9 @@
                     <option value="6">Master's Degree</option>
                     <option value="7">PhD</option>
                   </select>
+                  <div  class="invalidfeedback" *ngIf="isSubmitted && formdata.controls.qualification.errors">
+                      <div *ngIf="formdata.controls.qualification.errors.required">Qualification is required</div>
+                  </div>
                 </div>
               </div>
               <br>
@@ -1941,6 +1960,9 @@
                     <option value="5">GRE</option>
                     <option value="5">SAT</option>
                   </select>
+                  <div  class="invalidfeedback" *ngIf="isSubmitted && formdata.controls.engLangCertificates.errors">
+                      <div *ngIf="formdata.controls.engLangCertificates.errors.required">Eng Lang Cert is required</div>
+                  </div>
                 </div>
               </div>
             </div>

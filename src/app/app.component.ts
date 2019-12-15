@@ -38,7 +38,9 @@ export class AppComponent {
   emailId;
   status;
   isSubmitted : any= false;
+  submittedSuccess: any= false;
   isContactSubmitted: any = false;
+  conFormSubmittedSuccess: any= false;
   users : UserEnq[];
   userEnq : any ;
   visaAppStatus: VisaAppStatus;
@@ -57,15 +59,15 @@ export class AppComponent {
   ngOnInit() { 
     this.formdata = new FormGroup({
       id : new FormControl(''),
-      first_name : new FormControl(''),
+      first_name : new FormControl('', Validators.required),
       last_name : new FormControl(''),
-      email_id : new FormControl(''),
-      mobile_num : new FormControl(''),
+      email_id : new FormControl('', Validators.required),
+      mobile_num : new FormControl('', Validators.required),
       date_of_birth : new FormControl(''),
-      qualification : new FormControl(''),
+      qualification : new FormControl('', Validators.required),
       applyingFor:new FormControl(''),
       prefCountry: new FormControl(''),
-      engLangCertificates: new FormControl(''),
+      engLangCertificates: new FormControl('', Validators.required),
       status: new FormControl('Requested')
     });
 
@@ -87,12 +89,17 @@ export class AppComponent {
    console.log('Inside on click submit');
    console.log(frmdata);
    this.isSubmitted = true;
-   this.dataService.saveEnquiry(frmdata).subscribe(data => {
+  
+   if (this.formdata.invalid) {
+    return;
+   } else {   
+     this.dataService.saveEnquiry(frmdata).subscribe(data => {
     // console.log(data);
      this.userEnq = data;
      console.log(this.userEnq);
-
-   });
+     this.submittedSuccess = true;
+    });
+  }
 }
 
 onContactClickSubmit(contactfrmdata) {
@@ -100,12 +107,16 @@ onContactClickSubmit(contactfrmdata) {
    console.log('Inside on click contact submit');
    console.log(contactfrmdata);
    this.isContactSubmitted = true;
+   if (this.contactformdata.invalid) {
+    return;
+   } else { 
    this.dataService.bookAnAppointment(contactfrmdata).subscribe(data => {
      console.log(data);
      this.contactformdata = data;
      console.log(this.contactformdata);
-
-   });
+     this.conFormSubmittedSuccess =true;
+    });
+  }
 }
 
 onSearchClickSubmit(data) {
