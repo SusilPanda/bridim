@@ -1581,8 +1581,8 @@ a.scrollup{
     border: 6px solid #fff;
     margin-bottom: 15px;
     overflow: hidden;
-    height: 190px;
-    width: 200px;
+    height: 50%;
+    //width: 200px;
   }
   
   #testimonialsnew .profile .pic img {
@@ -1603,8 +1603,8 @@ a.scrollup{
   #testimonialsnew .quote {
     position: relative;
     background: #fff;
-    padding: 60px;
-    margin-top: 40px;
+    padding: 2%;
+    //margin-top: 40px;
     font-size: 16px;
     font-style: italic;
     border-radius: 5px;
@@ -2088,4 +2088,30 @@ Testing Nav Menu
 .invalidfeedback{
   color: #FF0000;
   padding-left: 10%;
+}
+
+.overflowAuto {
+  overflow-x: hidden;
+  overflow-y: auto;
+  // height: calc(100vh - 163px);
+}
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper:after {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.wrapper img {
+  width: auto;
+  height: 100%;
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
 }
