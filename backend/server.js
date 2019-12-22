@@ -75,6 +75,7 @@ router.use(function(req, res, next) {
   next(); // make sure we go to the next routes and don't stop here
 });
 
+mongoose.set('useFindAndModify', false);
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'pug');
@@ -233,8 +234,8 @@ router.route('/userRequest/save')
         res.send(err);
       }
       res.json({ message: "user enq created" });
-      sendEmail(JSON.stringify(req.body));
-
+      //sendEmail(JSON.stringify(req.body));
+      sendEmail(JSON.stringify(req.body), 'true');
     });
   });
 // User book an appointment mapping
@@ -249,7 +250,7 @@ router.route('/userappointment/:booking_id')
   });
   router.route('/userappointment')
   .get(function (req, res) {
-    console.log("I got a user request get Request");
+    console.log("I got a user request get All Request");
     UserAppointment.find(function (err, userAppontment) {
       if (err)
         res.send(err);
@@ -266,7 +267,7 @@ router.route('/userappointment/save')
         res.send(err);
       }
       res.json({ message: "user appointment created" });
-      sendEmail(JSON.stringify(req.body));
+      sendEmail(JSON.stringify(req.body), 'false' );
 
     });
   });
@@ -280,7 +281,15 @@ router.route('/uservisastatus/:passportnum')
       res.json(visaApplication);
     })
   });
-
+router.route('/uservisastatus')
+  .get(function (req, res) {
+    console.log("got a visa getAll request");
+    VisaApplication.find(function (err, visaApplication) {
+      if (err)
+        res.send(err);
+      res.json(visaApplication);
+    })
+  });
 router.route('/uservisastatus')
   .post(function (req, res) {
     console.log("got a user visa application create Request");
@@ -291,6 +300,18 @@ router.route('/uservisastatus')
         res.send(err);
       }
       res.json({ message: "user visa application created" });
+
+    });
+  })
+  .put(function(req, res) {
+    console.log("got a user visa application update Request");
+    console.log(req.body);
+    
+    VisaApplication.findOneAndUpdate({passport_num: req.body.passport_num}, req.body, function (err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: "user visa application updated" });
 
     });
   });
@@ -305,27 +326,66 @@ app.use('/api', router);
 
 // Email setup
 var nodemailer = require('nodemailer');
+var ejs = require('ejs');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'Team29ARSSP@gmail.com',
-    pass: 'mkoubliylgeuuyqm'
+    user: 'bridimvob@gmail.com',
+    pass: 'cnhikmndxoqxxyte'
   }
 });
 
 var mailOptions = {
-  from: 'Team29ARSSP@gmail.com',
-  to: 'susilchand@gmail.com',
+  from: 'bridimvob@gmail.com',
+  //to: 'susilchand@gmail.com',
+  //to: 'info@visaonboard.ca',
   subject: 'User Enq',
   text: 'That was easy!'
 };
 
-function sendEmail(content) {
+function format() {
+  var args = arguments;
+  if (args.length <= 1) { 
+      return args;
+  }
+  var result = args[0];
+  for (var i = 1; i < args.length; i++) {
+      result = result.replace(new RegExp("\\{" + (i - 1) + "\\}", "g"), args[i]);
+  }
+  return result;
+}
+
+function nl2br (str, is_xhtml) {
+  var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + '$2');
+} 
+
+function sendEmail(content, isEnq) {
+  console.log(content);
+  var userEn = JSON.parse(content);
+  console.log(userEn.name);
+  var textM;
+  //var textMsg = ejs.render('Name : , <%= name %> , Mobile Number : <%= mobileNumber %>', content);
+  if (isEnq == 'true') {
+    textM = format("First Name : {0}, \nLast Name : {1}, \nEmailId : {2}, \nMobile Number : {3}, \nDOB : {4}, \nQualification : {5}, \nApplied For : {6}, \nPreferred Country : {7}, \nEng Lang Certificate : {8}", 
+    userEn.first_name ,  userEn.last_name, userEn.email_id, userEn.mobile_num, userEn.date_of_birth, userEn.qualification, 
+    userEn.applyingFor, userEn.prefCountry, userEn.engLangCertificates );
+    var sub = 'User Enquiry';
+  } else {
+    textM = format("Name : {0}, \nEmail : {1}, \nMobile Number : {2}, \nSubject : {3}, \nMessage : {4}", userEn.name ,  userEn.email,
+    userEn.mobileNumber, userEn.subject, userEn.message );
+    var sub = 'User booked an appointment';
+  }
+ 
+
+  var textMsg = nl2br(textM);
+  //console.log(JSON.stringify(userEn.name));
   transporter.sendMail({
-    from: 'Team29ARSSP@gmail.com',
+    from: 'bridimvob@gmail.com',
     to: 'susilchand@gmail.com',
-    subject: 'User Enq',
-    text: content
+    subject: sub,
+    //html: '<h1>User Booked An Appointment!</h1><p>User <b>details </b> below : </p>',
+    text: textMsg
   }, function (error, info) {
     if (error) {
       console.log(error);
@@ -336,24 +396,6 @@ function sendEmail(content) {
 };
 
 
-// End of Email Setup
-// End of earlier code
-// catch 404 and forward to error handler
-/*app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});*/
-//test
 module.exports = app;
 var http = require('http');
 var port = process.env.PORT;
