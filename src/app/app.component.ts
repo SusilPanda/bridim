@@ -119,6 +119,35 @@ onContactClickSubmit(contactfrmdata) {
   }
 }
 
+clearForm() {
+
+  this.formdata.reset({
+        'first_name': '',
+        'last_name': '',
+        'mobile_num': '',
+        'email_id' : '',
+        'date_of_birth' : '',
+        'qualification' : '',
+        'applyingFor' : '',
+        'prefCountry' : '',
+        'engLangCertificates' : '',
+        'status' : ''
+       });
+
+  this.contactformdata.reset({
+    'first_name': '',
+    'last_name': '',
+    'mobile_num': '',
+    'email_id' : '',
+    'date_of_birth' : '',
+    'qualification' : '',
+    'applyingFor' : '',
+    'prefCountry' : '',
+    'engLangCertificates' : '',
+    'status' : ''
+   });
+}
+
 onSearchClickSubmit(data) {
   //alert("Entered passport id : " + data.passportId); 
   this.visaAppStatus = null;
