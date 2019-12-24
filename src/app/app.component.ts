@@ -135,16 +135,11 @@ clearForm() {
        });
 
   this.contactformdata.reset({
-    'first_name': '',
-    'last_name': '',
-    'mobile_num': '',
-    'email_id' : '',
-    'date_of_birth' : '',
-    'qualification' : '',
-    'applyingFor' : '',
-    'prefCountry' : '',
-    'engLangCertificates' : '',
-    'status' : ''
+    'name': '',
+    'email' : '',
+    'mobileNumber': '',
+    'subject' : '',
+    'message' : ''
    });
 }
 

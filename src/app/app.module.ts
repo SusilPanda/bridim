@@ -37,4 +37,4 @@ import { AdminManagementComponent } from './admin-management/admin-management.co
 })
 export class AppModule {}
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);
