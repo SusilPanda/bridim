@@ -326,7 +326,7 @@ app.use('/api', router);
 
 // Email setup
 var nodemailer = require('nodemailer');
-var ejs = require('ejs');
+//var ejs = require('ejs');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
