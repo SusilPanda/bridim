@@ -367,8 +367,14 @@ section.section {
 
 /* --- section heading --- */
 .section-header {
-	text-align: center;
+  text-align: center;
 }
+
+.section-para {
+  color: white;
+  background-color: #153025;
+}
+
 .section-header h2.section-heading {
 	text-transform: uppercase;
 	font-weight: 700;
@@ -379,16 +385,16 @@ section.section {
 ============================= */
 
 #parallax1{
-	background-image: url(../assets/vob/bg-large1.jpg);
+	background-image: url(../assets/vob/bg_counts1.jpg);
 }
 
 #testimonials{
-    background-image: url(../assets/vob/beach_bg.jpg);
+    //background-image: url(../assets/vob/beach_bg.jpg);
     //opacity: 0.5;
 }
 
 #testimonials1{
-    background-image: url(../assets/img/parallax/img3.jpg);
+    //background-image: url(../assets/img/parallax/img3.jpg);
 }
 
 .transbox {
@@ -1416,7 +1422,7 @@ a.scrollup{
     display: table;
     width: 100%;
     height: 100vh;
-    background: url(../assets/vob/bg-large1.jpg) top center;
+   // background: url(../assets/vob/bg-large1.jpg) top center;
     background-size: cover;
   }
   
