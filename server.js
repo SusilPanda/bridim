@@ -238,13 +238,24 @@ router.route('/uservisastatus')
     console.log("got a user visa application create Request");
     console.log(req.body);
 
-    VisaApplication.create(req.body, function (err) {
+    var query = { 'passport_num': req.body.passport_num };
+    //req.newData.username = req.user.username;
+    console.log('query'+query);
+    VisaApplication.findOneAndUpdate(query, req.body, { upsert: true }, function (err, doc) {
+      if (err) {
+        return res.send(500, { error: err });
+      } else {
+        res.json({ message: "user visa application created" });
+      }
+      //return res.send('Succesfully saved.');
+    });
+    /*VisaApplication.create(req.body, function (err) {
       if (err) {
         res.send(err);
       }
       res.json({ message: "user visa application created" });
 
-    });
+    }); */
   });
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {

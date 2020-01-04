@@ -47,5 +47,20 @@ export class DataService {
     }
     
 
+    // Admin management
+    getAllVisaStatus() {
+        return this.http.get<any>(ServiceConstant.HOST + '/api/uservisastatus');
+    }
+
+    createUserVisaStatus(visaAppStatus: any) {
+        return this.http.post(ServiceConstant.HOST + '/api/uservisastatus', visaAppStatus);
+    }
    
+    updateUserVisaStatus(visaAppStatus: any) {
+        return this.http.put(ServiceConstant.HOST + '/api/uservisastatus', visaAppStatus);
+    }
+
+    deleteUserVisaStatus(visaAppStatus: any) {
+        return this.http.delete(ServiceConstant.HOST + '/api/uservisastatus/'+ visaAppStatus.passport_num);
+    }
 }

@@ -1,25 +1,128 @@
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">WebSiteName</a>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li>
-              <li><a href="#">Page 3</a></li>
+<div class="container-fluid">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <a class="navbar-brand" routerLink="">
+          <img  src="../../assets/vob/logo_resize.png" alt="">
+      </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="">Home <!--<span class="sr-only">(current)</span>--></a>
+          </li>
+          
+          <!--
+          <li class="nav-item dropdown mr-sm-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ABOUT US
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#about">About</a>
+              <a class="dropdown-item" href="#portfolio">Portfolio</a>
+              <a class="dropdown-item" href="#testimonial">Testimonial</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#gallery">Gallery</a>
+            </div>
+          </li> -->
+          <!--<li class="nav-item">
+          <a class="nav-link" href="https://wa.me/+6590516498/?text=urlencodedtext" target="_blank">
+            <img src="../assets/vob/whatsapp_icon_logo_1.png" alt="">
+          </a>
+          </li> -->
+          <!--<form class="navbar-form navbar-right" #adminLogin = "ngForm" (ngSubmit) = "onLoginClickSubmit(adminLogin.value)"> 
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link">
+                    <input  type="email" placeholder="Email" name="emailId" ngModel aria-label="Email">
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link">
+                    <input  type="password" placeholder="password" name="password" ngModel aria-label="Password">
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link">
+                    <button class="btn btn-primary" type="submit" >Login</button>
+                  </a>
+              </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-          </div>
+          </form> -->
+        </ul>
+        
+      </div>
+      
+     
+    </div>
+  </nav>
+</div>
+<div class="container">
+    <div class = "panel panel-primary">
+        <div class = "panel-heading">
+           <h4 class = "panel-title">Add Visa Status Task</h4>
         </div>
-      </nav>
+        
+        <div class = "panel-body">
+            <form class="form-inline" [formGroup]="visaForm" (ngSubmit)="onClickSubmit(visaForm.value)">
+                <div>
+                  <input class="mb-2 mr-sm-2" type="text" id="passport" name="passport" formControlName="passport_num"
+                    placeholder="Passport Number" required autofocus>
+                </div>
+                <div>
+                  <input class="mb-2 mr-sm-2" type="text" id="name" name="name" formControlName="name" placeholder="Name" required
+                    autofocus>
+                </div>
+                <div>
+                  <input class="mb-2 mr-sm-2" type="text" id="desc" name="visadesc" formControlName="visa_desc"
+                    placeholder="Visa Desc" required autofocus>
+                </div>
+                <div>
+                  <input class="mb-2 mr-sm-2" type="text" id="sts" name="status" formControlName="visa_status" placeholder="Status"
+                    required autofocus>
+                </div>
+            
+                <div>
+                  <button type="submit" class="btn btn-primary mb-2" [disabled]="checked">Create/Update</button>
+                </div>
+                <!--<div class="mar-left10">
+                  <button class="btn btn-info mb-2" (click)="updateVisaStatus(visaForm)">Update</button>
+                </div> -->
+              </form>
+        </div>
+     </div>  
+</div>
+  <div class="container">    
+      <h2>List of Visa Status</h2>
+      <table class="table table-hover">
+          <thead>
+          <tr>
+              <th>Passport Number</th>
+              <th>Name</th>
+              <th>Visa Task Description</th>
+              <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visa of allVisaAppStatus">
+              <!--<td><input type="checkbox" [(ngModel)]="checked"> </td> -->
+              <td>{{visa.passport_num}}</td>
+              <td>{{visa.name}}</td>
+              <td>{{visa.visa_desc}}</td>
+              <td>{{visa.visa_status}}</td>
+              <!-- <td><button class="btn btn-danger" ng-click="remove($index)">Remove</button></td>-->
+              <td><button class="btn btn-warning"  (click)="editVisaStatus(visa)">Edit</button></td>
+             
+              <td><button class="btn btn-danger" [disabled]="false" (click)="deleteVisaStatus(visa)">Remove</button></td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+<router-outlet></router-outlet>
+         
+         

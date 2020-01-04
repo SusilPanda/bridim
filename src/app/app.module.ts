@@ -14,12 +14,16 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DataService} from '../DataService';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarouselBasicComponent,
-    AdminManagementComponent
+    AdminManagementComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

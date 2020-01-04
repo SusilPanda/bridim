@@ -323,10 +323,10 @@ SOFTWARE.
 @angular/platform-browser
 MIT
 
-@angular/forms
+@angular/router
 MIT
 
-@angular/router
+@angular/forms
 MIT
 
 ngx-youtube-player

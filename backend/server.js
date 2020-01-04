@@ -5,7 +5,7 @@ var path = require('path');
 //var cookieParser = require('cookie-parser');
 //var logger = require('morgan');
 
-require('dotenv').config();
+require('dotenv').config({path: __dirname + '/.env'});
 
 var app = express();
 
@@ -38,8 +38,9 @@ app.use('/users', usersRouter);
 //Set up mongoose connection
 //this code creates the default connection to the database and binds to the error event (so that errors will be printed to the console).
 var mongoose = require('mongoose');
-var mongoDB =  process.env.MONGO_URL_LOCAL;//'mongodb://susilpanda:website7@ds155577.mlab.com:55577/website'; // connect to our database 'mongodb://user:pass@host:port/db';
-const mongoLocalUrl = 'mongodb://localhost:27017/user'
+//const mongoLocalUrl =  process.env.MONGO_URL_LOCAL;
+const mongoLocalUrl = 'mongodb://localhost:27017/user';
+//console.log(mongoLocalUrl);
 mongoose.connect(mongoLocalUrl, {
    /* auth: {
         //authdb: 'admin',
@@ -280,6 +281,18 @@ router.route('/uservisastatus/:passportnum')
         res.send(err);
       res.json(visaApplication);
     })
+  })
+  .delete(function(req, res) {
+    console.log("got a user visa application delete Request");
+    console.log(req.params.passport_num);
+    
+    VisaApplication.deleteOne({passport_num: req.params.passportnum}, function (err) {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ message: "user visa application deleted" });
+
+    });
   });
 router.route('/uservisastatus')
   .get(function (req, res) {
@@ -289,19 +302,30 @@ router.route('/uservisastatus')
         res.send(err);
       res.json(visaApplication);
     })
-  });
-router.route('/uservisastatus')
+  })
+  // method to Save Or Update the visa status record
   .post(function (req, res) {
-    console.log("got a user visa application create Request");
+    console.log("got a user visa application create/update Request");
     console.log(req.body);
 
-    VisaApplication.create(req.body, function (err) {
+    var query = { 'passport_num': req.body.passport_num };
+    console.log(query);
+    VisaApplication.findOneAndUpdate(query, req.body, { upsert: true }, function (err, doc) {
+      if (err) {
+        console.log(err);
+        return res.send(500, { error: err });
+      } else {
+        res.json({ message: "user visa application created/updated" });
+      }
+      //return res.send('Succesfully saved.');
+    });
+    /*VisaApplication.create(req.body, function (err) {
       if (err) {
         res.send(err);
       }
       res.json({ message: "user visa application created" });
 
-    });
+    });*/
   })
   .put(function(req, res) {
     console.log("got a user visa application update Request");
@@ -315,6 +339,7 @@ router.route('/uservisastatus')
 
     });
   });
+
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
   res.json({ message: 'hooray! welcome to our api!' });
@@ -328,17 +353,15 @@ app.use('/api', router);
 var nodemailer = require('nodemailer');
 //var ejs = require('ejs');
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: process.env.EMAIL_SERVICE,
   auth: {
-    user: 'bridimvob@gmail.com',
-    pass: 'cnhikmndxoqxxyte'
+    user: process.env.EMAIL_SENDER_USER,
+    pass: process.env.EMAIL_SENDER_PASS
   }
 });
 
 var mailOptions = {
-  from: 'bridimvob@gmail.com',
-  //to: 'susilchand@gmail.com',
-  //to: 'info@visaonboard.ca',
+  from: process.env.EMAIL_SENDER,
   subject: 'User Enq',
   text: 'That was easy!'
 };
@@ -381,8 +404,8 @@ function sendEmail(content, isEnq) {
   var textMsg = nl2br(textM);
   //console.log(JSON.stringify(userEn.name));
   transporter.sendMail({
-    from: 'bridimvob@gmail.com',
-    to: 'susilchand@gmail.com',
+    from: process.env.EMAIL_SENDER,
+    to: process.env.EMAIL_RECV_TEST,
     subject: sub,
     //html: '<h1>User Booked An Appointment!</h1><p>User <b>details </b> below : </p>',
     text: textMsg

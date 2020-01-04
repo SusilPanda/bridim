@@ -9,6 +9,7 @@ var VisaApplicationSchema = new Schema(
         //email_id:{type: String, required: true, max: 100},
         name:{type: String, max: 100},
         //mobile_num: {typr:Number},
+        visa_desc:{type: String, required: true, max: 100},
         visa_status:{type: String, required: true, max: 100}
     }
 );
