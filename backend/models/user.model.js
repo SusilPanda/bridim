@@ -5,12 +5,12 @@ var Schema = mongoose.Schema;
 //The allowed SchemaTypes are: String, Number, Date, Buffer, Boolean, Mixed, ObjectId, Array
 var UserSchema = new Schema(
     {
-        first_name: {type: String, required: true, max: 100},
-        last_name: {type: String, required: true, max: 100},
-        email_id:{type: String, required: true, max: 100},
+        first_name: {type: String, max: 100},
+        last_name: {type: String, max: 100},
+        email_id:{type: String, required: true, unique: true, max: 100},
         password:{type: String, required: true, max: 100},
-        date_of_birth: {type: Date},
-        is_admin:{type: Boolean, required: true}
+        //date_of_birth: {type: Date},
+        //is_admin:{type: Boolean, required: true}
     }
 );
 

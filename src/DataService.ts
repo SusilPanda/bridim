@@ -63,4 +63,14 @@ export class DataService {
     deleteUserVisaStatus(visaAppStatus: any) {
         return this.http.delete(ServiceConstant.HOST + '/api/uservisastatus/'+ visaAppStatus.passport_num);
     }
+
+    //Admin authentication
+    authenticateAdminUser(userForm: any) {
+        return this.http.post(ServiceConstant.HOST + '/api/user/authenticate', userForm);
+    }
+
+    //User Register
+    registerUser(registerForm: any) {
+        return this.http.post(ServiceConstant.HOST + '/api/user/register', registerForm);
+    }
 }

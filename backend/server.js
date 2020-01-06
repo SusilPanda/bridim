@@ -155,7 +155,7 @@ router.route('/users/:user_id')
 
 // get a specific user by id
     .get(function (req, res) {
-      console.log("I got a get Request");
+      console.log("I got a user get Request");
       User.findById(req.params.user_id, function (err, user) {
         if(err)
           res.send(err);
@@ -188,22 +188,49 @@ router.route('/users/:user_id')
       })
     });
 
-router.route('/register')
+router.route('/user/register')
 
-// create a user (accessed at POST http://localhost:8080/api/register)
-    .post(function(req, res){
-      console.log("I got a register Request");
-      console.log(req.body);
+// create a user (accessed at POST http://localhost:8080/api/user/register)
+  .post(function (req, res) {
+    console.log("I got a register Request");
+    console.log(req.body);
 
-      User.create(req.body, function (err) {
-        if(err){
+    User.create(req.body, function (err, user) {
+      if (err) {
+        console.log(err);
+        if (err.code == '11000') {
+          res.json({ message: "user already registered" });
+        } else {
           res.send(err);
         }
-        res.json({message : "user created"});
+      } else {
+        console.log(user);
+        res.json({ message: "user created" });
+      }
 
-      });
+
     });
-// user request routes 
+  });
+//Admin user authentication
+router.route('/user/authenticate') 
+  .post(function (req, res) {
+    console.log("I got a admin user authetication Request");
+    console.log(req.body);
+
+    User.findOne(req.body, function (err, data) {
+      if (err) {
+        res.send(err);
+      } 
+      else {
+        console.log(data);
+        res.json(data);
+      }
+      
+      
+    });
+});
+
+// user enquiry request routes 
 router.route('/userrequests')
 // get all the users (accessed at GET http://localhost:8080/api/users)
     .get(function (req, res) {
@@ -249,7 +276,7 @@ router.route('/userappointment/:booking_id')
       res.json(userAppontment);
     })
   });
-  router.route('/userappointment')
+router.route('/userappointment')
   .get(function (req, res) {
     console.log("I got a user request get All Request");
     UserAppointment.find(function (err, userAppontment) {
@@ -265,6 +292,7 @@ router.route('/userappointment/save')
 
     UserAppointment.create(req.body, function (err) {
       if (err) {
+        console.log(err);
         res.send(err);
       }
       res.json({ message: "user appointment created" });
