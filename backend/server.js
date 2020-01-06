@@ -433,7 +433,7 @@ function sendEmail(content, isEnq) {
   //console.log(JSON.stringify(userEn.name));
   transporter.sendMail({
     from: process.env.EMAIL_SENDER,
-    to: process.env.EMAIL_RECV_TEST,
+    to: process.env.EMAIL_RECV,
     subject: sub,
     //html: '<h1>User Booked An Appointment!</h1><p>User <b>details </b> below : </p>',
     text: textMsg
