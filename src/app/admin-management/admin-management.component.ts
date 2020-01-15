@@ -18,6 +18,10 @@ interface AdminLogin {
   emailId;
   password;
 }
+interface UploadForm {
+  id;
+  fileName;
+}
 
 @Component({
   selector: 'app-admin-management',
@@ -40,6 +44,14 @@ export class AdminManagementComponent implements OnInit {
   submitted = false;
   returnUrl: string;
 
+  uploadForm: FormGroup;
+  uploadFormSubmittedSuccess: false;
+  fileData: File = null;
+
+fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+}
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -59,7 +71,9 @@ export class AdminManagementComponent implements OnInit {
     this.getAllTask();
     // reset login status
     // this.authenticationService.logout();
-
+    this.uploadForm = this.formBuilder.group({
+      fileName: ['', Validators.required]
+    });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
@@ -153,6 +167,18 @@ export class AdminManagementComponent implements OnInit {
     //refresh the task list
     this.getAllTask();
 
+  }
+
+  onUploadSubmit(uploadForm) {
+    console.log('upload form received');
+    //const uploadForm = new FormData();
+    uploadForm.append('file', this.fileData);
+    this.dataService.uploadVisaForm(uploadForm).subscribe(data => {
+      // console.log(data);
+      //this.visaAppStatus = data;
+      console.log(data);
+      //this.submittedSuccess = true;
+    });
   }
 
 }

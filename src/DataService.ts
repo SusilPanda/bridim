@@ -73,4 +73,9 @@ export class DataService {
     registerUser(registerForm: any) {
         return this.http.post(ServiceConstant.HOST + '/api/user/register', registerForm);
     }
+
+    //Upload Visa Form
+    uploadVisaForm(uploadForm: any) {
+        return this.http.post(ServiceConstant.HOST + '/api/uservisastatus/upload', uploadForm);;
+    }
 }

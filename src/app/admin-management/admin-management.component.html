@@ -119,10 +119,41 @@
               <td><button class="btn btn-warning"  (click)="editVisaStatus(visa)">Edit</button></td>
              
               <td><button class="btn btn-danger" [disabled]="false" (click)="deleteVisaStatus(visa)">Remove</button></td>
+              <td><button class="btn btn-info" data-toggle="modal" data-target="#uploadFileModal">Upload</button></td>
           </tr>
           </tbody>
       </table>
   </div>
+<!-- Modal Write to US -->
+<div class="modal fade" id="uploadFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Upload Form</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="success" *ngIf="uploadFormSubmittedSuccess">
+        <i class="fa fa-check fa-2x animated rotateIn"></i>
+        <p> {{status}} </p>
+      </div>
+      <form [formGroup]="uploadForm" (ngSubmit)="onUploadSubmit(uploadForm.value)">
+        <div class="modal-body mx-3">
+          <div class="md-form mb-3">
+            <input type="file" name="fileName" />
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button class="btn btn-primary" type="submit">Submit </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End of file upload Form-->
 <router-outlet></router-outlet>
          
          
