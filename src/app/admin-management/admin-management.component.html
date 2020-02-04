@@ -106,6 +106,7 @@
               <th>Name</th>
               <th>Visa Task Description</th>
               <th>Status</th>
+              <th>Document</th>
           </tr>
           </thead>
           <tbody>
@@ -115,11 +116,12 @@
               <td>{{visa.name}}</td>
               <td>{{visa.visa_desc}}</td>
               <td>{{visa.visa_status}}</td>
+              <td>{{visa.file_name}}</td>
               <!-- <td><button class="btn btn-danger" ng-click="remove($index)">Remove</button></td>-->
               <td><button class="btn btn-warning"  (click)="editVisaStatus(visa)">Edit</button></td>
              
               <td><button class="btn btn-danger" [disabled]="false" (click)="deleteVisaStatus(visa)">Remove</button></td>
-              <td><button class="btn btn-info" data-toggle="modal" data-target="#uploadFileModal">Upload</button></td>
+              <td><button class="btn btn-info" data-toggle="modal" data-target="#uploadFileModal" (click)="editVisaStatusForUpload(visa)">Upload</button></td>
           </tr>
           </tbody>
       </table>
@@ -130,19 +132,21 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Upload Form</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Upload Approval Letter</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div id="success" *ngIf="uploadFormSubmittedSuccess">
+      <div id="success" *ngIf="fileSubmittedSuccess">
         <i class="fa fa-check fa-2x animated rotateIn"></i>
-        <p> {{status}} </p>
+        <p> Upload Completed </p>
       </div>
       <form [formGroup]="uploadForm" (ngSubmit)="onUploadSubmit(uploadForm.value)">
         <div class="modal-body mx-3">
           <div class="md-form mb-3">
-            <input type="file" name="fileName" />
+            <input type="file" name="file" id="file"
+            (change)="handleFileInput($event.target.files)" />
+            
           </div>
         </div>
         <div class="modal-footer d-flex justify-content-center">

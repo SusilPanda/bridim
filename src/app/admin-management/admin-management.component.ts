@@ -42,11 +42,13 @@ export class AdminManagementComponent implements OnInit {
   visaForm: FormGroup;
   loading = false;
   submitted = false;
+  fileSubmittedSuccess = false;
   returnUrl: string;
 
   uploadForm: FormGroup;
   uploadFormSubmittedSuccess: false;
   fileData: File = null;
+  passportForFileUpload: string;
 
 fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
@@ -72,7 +74,7 @@ fileProgress(fileInput: any) {
     // reset login status
     // this.authenticationService.logout();
     this.uploadForm = this.formBuilder.group({
-      fileName: ['', Validators.required]
+      file: ['', Validators.required]
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -168,16 +170,31 @@ fileProgress(fileInput: any) {
     this.getAllTask();
 
   }
+  // method to set passport num while file upload
+  editVisaStatusForUpload(visaAppStatus) {
+    this.passportForFileUpload = visaAppStatus.passport_num;
+    console.log(this.passportForFileUpload);
+  }
+  fileToUpload: File = null;
 
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
   onUploadSubmit(uploadForm) {
     console.log('upload form received');
-    //const uploadForm = new FormData();
-    uploadForm.append('file', this.fileData);
-    this.dataService.uploadVisaForm(uploadForm).subscribe(data => {
+    const uploadFileForm: FormData = new FormData();
+    uploadFileForm.append('file', this.fileToUpload, this.fileToUpload.name);
+    uploadFileForm.append('passport_num', this.passportForFileUpload);
+    this.dataService.uploadVisaForm(uploadFileForm, this.passportForFileUpload).subscribe(data => {
       // console.log(data);
       //this.visaAppStatus = data;
-      console.log(data);
-      //this.submittedSuccess = true;
+      //console.log(data);
+      if(data != null) {
+        this.fileSubmittedSuccess = true;
+      } else {
+        this.fileSubmittedSuccess = false;
+      }
+      //this.fileSubmittedSuccess = true;
     });
   }
 

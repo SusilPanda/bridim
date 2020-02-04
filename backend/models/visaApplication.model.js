@@ -10,7 +10,8 @@ var VisaApplicationSchema = new Schema(
         name:{type: String, max: 100},
         //mobile_num: {typr:Number},
         visa_desc:{type: String, required: true, max: 100},
-        visa_status:{type: String, required: true, max: 100}
+        visa_status:{type: String, required: true, max: 100},
+        file_name:{type: String, max: 100}
     }
 );
 

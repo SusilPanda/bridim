@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/DataService';
+import * as fileSaver from 'file-saver';
 
 interface UserEnq {
   id;
@@ -21,6 +22,7 @@ interface VisaAppStatus {
   passport_num;
   name;
   visa_status;
+  file_name;
 }
 
 @Component({
@@ -49,6 +51,7 @@ export class HomeComponent implements OnInit {
   visaAppStatusError: boolean = false;
   visaAppStatusErrorMessage: string;
   submitted:boolean=false;
+  fileToBeDownload : File;
   
   visaStatus =
   { 
@@ -171,6 +174,52 @@ getVisaStatus(passport : string) {
    // console.log(this.visaAppStatus);
 });
 
+}
+
+downloadForm(passport: string, fileName: string ) {
+  console.log(fileName);
+  //console.log(this.selectedPassportNum);
+  this.dataService.downloadVisaStatusForm(fileName).subscribe(data => {
+    if (null == data) {
+      this.visaAppStatusError = true;
+      this.visaAppStatusErrorMessage = "Passport number Incorrect Or Not yet Applied";
+      this.isVisaStatusCheckActive = true;
+    } else {
+      this.fileToBeDownload = data;
+      this.isVisaStatusCheckActive = true;
+      this.visaAppStatusError = false;
+    }
+   /* var blob = new Blob([data], {type: 'application/pdf'});
+
+  var downloadURL = window.URL.createObjectURL(data);
+  var link = document.createElement('a');
+  link.href = downloadURL;
+  link.download = "visaApprovedForm.pdf";
+  link.click(); */
+
+  // It is necessary to create a new blob object with mime-type explicitly set
+      // otherwise only Chrome works like it should
+      //const newBlob = new Blob([(data)], { type: 'application/text' });
+      let blob:any = new Blob([data], { type: 'text/json; charset=utf-8' });
+
+      // IE doesn't allow using a blob object directly as link href
+      // instead it is necessary to use msSaveOrOpenBlob
+      if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(blob);
+          return;
+      }
+
+      // For other browsers:
+      // Create a link pointing to the ObjectURL containing the blob.
+      const downloadURL = URL.createObjectURL(blob);
+       // window.open(downloadURL);
+       //window.location.href = downloadURL;
+        fileSaver.saveAs(blob, fileName);
+   
+    //console.log(data);
+  //  console.log('visa app status : ');
+   // console.log(this.visaAppStatus);
+});
 }
 
   carouselOptions = {

@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 const cors = require('cors');
 var path = require('path');
+var multer = require('multer');
 //var cookieParser = require('cookie-parser');
 //var logger = require('morgan');
 
@@ -221,9 +222,11 @@ router.route('/user/authenticate')
       if (err) {
         res.send(err);
       } 
-      else {
-        console.log(data);
-        res.json(data);
+      else if(data != null) {
+       // console.log(data);
+        res.json({ message: "user authenticated success" });
+      } else {
+        res.json(null);
       }
       
       
@@ -367,7 +370,94 @@ router.route('/uservisastatus')
 
     });
   });
+//Upload Visa Approval Form
 
+// set the directory for the uploads to the uploaded to
+var DIR = './uploads/';
+
+var store = multer.diskStorage({
+  destination : function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename : function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+
+});
+//define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
+var upload = multer({storage: store}).single('file');
+/* GET home page. */
+
+router.get('/', function(req, res, next) {
+// render the index page, and pass data to it.
+  res.render('index', { title: 'Express' });
+});
+
+//our file upload function.
+router.post('/upload', function (req, res, next) {
+     var path = '';
+     upload(req, res, function (err) {
+        if (err) {
+          // An error occurred when uploading
+          console.log(err);
+          return res.status(422).send("an Error occured")
+        }  
+       // No error occured.
+
+        path = req.file.path;
+        console.log(req.file.filename);
+        console.log(req.headers.passport_num);
+        var query = { 'passport_num': req.headers.passport_num };
+        VisaApplication.findOneAndUpdate(query, 
+          {
+            $set: {
+              'file_name' : req.file.filename
+             }
+          }, function (err, doc) {
+          if (err) {
+            console.log(err);
+            return res.send(500, { error: err });
+          } else {
+            console.log(doc);
+            //res.json({ message: "filename for passport num updated" });
+          }
+          //return res.send('Succesfully saved.');
+        });
+        return res.json({ message: "user visa Approval letter uploaded" }); 
+  });     
+});
+
+//our file upload function.
+router.get('/download/:fileName', function (req, res, next) {
+  var filepath = path.join(__dirname, '.././uploads/') + '/'+ req.params.fileName;
+  res.sendFile(filepath);
+});
+
+router.route('/uservisastatus/upload')
+.post(function(req, res) {
+  console.log("got a user visa application form upload update Request");
+  console.log(req.body);
+
+  var query = { 'passport_num': req.body.passport_num };
+  console.log(query);
+  VisaApplication.findOneAndUpdate(query, req.body, function (err, doc) {
+    if (err) {
+      console.log(err);
+      return res.send(500, { error: err });
+    } else {
+      res.json({ message: "user visa application created/updated" });
+    }
+    //return res.send('Succesfully saved.');
+  });
+})
+.get(function(req, res) {
+  console.log("got a visa getAll request");
+  VisaApplication.find(function (err, visaApplication) {
+    if (err)
+      res.send(err);
+    res.json(visaApplication);
+  })
+});
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
   res.json({ message: 'hooray! welcome to our api!' });

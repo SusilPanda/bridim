@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit(loginForm) {
         this.submitted = true;
-        console.log(loginForm);
+        //console.log(loginForm);
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -127,7 +127,7 @@ export class LoginComponent implements OnInit {
                 this.registerMsg = "user already registered"
                 this.registerSuccess = false;
             }*/ else {
-                console.log(data);
+                //console.log(data);
                 const obj = JSON.parse(JSON.stringify(data));
                 this.registerMsg = obj.message;
                 this.registerSuccess = true;

@@ -1206,8 +1206,79 @@
   
             <!-- The slideshow -->
             <div class="carousel-inner" role="listbox">
-              
               <div class="carousel-item active">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://www.youtube.com/embed/crmfKpcVYWw" frameborder="10"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://www.youtube.com/embed/I-lw28Hgwfk" frameborder="10"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://www.youtube.com/embed/N_BwAuqsNH4" frameborder="10"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://www.youtube.com/embed/aQnjypwcWB0" frameborder="10"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://www.youtube.com/embed/Z1FIgtIlaAM" frameborder="10"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4"> <!-- Needs to Update-->
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://www.youtube.com/embed/iAA4L-ou4p0" frameborder="10"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End of carousel-item-->
+              <div class="carousel-item ">
                 <div class="row">
                   <div class="col-sm-4">
                     <div class="card">
@@ -1707,7 +1778,7 @@
                 <div class="card-header">Adress</div>
                 <div class="card-body text-success">     
                     <h5 class="card-title"><i class="fa fa-map-marker"></i></h5>               
-                  <p class="card-text">Govt. College Road, Near Pardeep Kamboj Farm, Indri, Karnal, Haryana-132041 </p>
+                  <p class="card-text">Coming Soon </p>
                 </div>
               </div>
               <div class="card border-success mb-3" >
@@ -1721,7 +1792,7 @@
                 <div class="card-header">Contact Number</div>
                 <div class="card-body text-success">
                     <h5 class="card-title"><i class="fa fa-phone"></i></h5>
-                  <p class="card-text">9017970050,  9306369488</p>
+                  <p class="card-text">9855989007</p>
                 </div>
               </div>               
             </div>          
@@ -1875,7 +1946,21 @@
               <div>Status : {{visaAppStatus.visa_status}} </div>
             </div>
             <div *ngIf="visaAppStatusError">
-                <div>Status : {{visaAppStatusErrorMessage}} </div>
+              <div>Status : {{visaAppStatusErrorMessage}} </div>
+            </div>
+            <div>
+              <div class="mar-top20" *ngIf="isVisaStatusCheckActive && !visaAppStatusError &&
+                                    visaAppStatus.file_name != null &&
+                                    visaAppStatus.file_name != undefined
+                                    "> 
+                <div>Approval letter : {{visaAppStatus.file_name}} </div>
+                <div>
+                  <button type="button" class="btn btn-info btn-sm"
+                    (click)="downloadForm(visaAppStatus.passport_num, visaAppStatus.file_name)">
+                    Download Approval Letter
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
     
