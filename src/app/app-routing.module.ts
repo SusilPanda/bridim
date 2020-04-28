@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminManagementComponent} from './admin-management/admin-management.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
+import {OnlineformComponent} from './onlineform/onlineform.component';
+import {FormsubmitsuccessComponent} from './formsubmitsuccess/formsubmitsuccess.component';
+import {OnlineFormSubmissionManagementComponent} from './online-form-submission-management/online-form-submission-management.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,22 @@ const routes: Routes = [
     redirectTo: '/home',
     // canActivate: [AuthGuard],
     //component: AdminManagementComponent
+  },
+  {
+    path: 'applyOnline',
+    //redirectTo: '/applyOnline',
+    // canActivate: [AuthGuard],
+    component: OnlineformComponent
+  },
+  {
+    path: 'submitsuccess',
+    // canActivate: [AuthGuard],
+    component: FormsubmitsuccessComponent
+  },
+  {
+    path: 'onlineformmanage',
+    // canActivate: [AuthGuard],
+    component: OnlineFormSubmissionManagementComponent
   }
   
 ];

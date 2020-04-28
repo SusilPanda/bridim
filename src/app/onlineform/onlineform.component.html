@@ -1,0 +1,350 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="">
+          <img src="../../assets/vob/logo_resize.png" alt="">
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+  
+        <ul class="navbar-nav" style="float: right;">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="">Home
+              <!--<span class="sr-only">(current)</span>--></a>
+          </li>
+        </ul>
+      </div>
+      </div>
+  </nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 mx-auto">
+      <div class="card ">
+        <div class="card-header">
+            <h5 class="card-title text-center">Apply Online By Submitting Your Details</h5>
+        </div>
+        <div class="card-body">       
+          <form [formGroup]="onlineForm" (ngSubmit)="onUploadSubmit(onlineForm.value)">
+            <div class="row">
+              <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="first_name">First Name *</label>
+                      <input type="text" name="first_name" formControlName="first_name" class="form-control" />
+                  <div *ngIf="submitted && f.first_name.errors" class="invalidfeedback">
+                    <div *ngIf="f.first_name.errors.required">First name is required</div>
+                  </div>
+                  </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="last_name">Last Name *</label>
+                  <input type="text" name="last_name" formControlName="last_name" class="form-control" />
+                  <div *ngIf="submitted && f.last_name.errors" class="invalidfeedback">
+                    <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                  </div>
+              </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="dob">Date Of Birth *</label>
+                  <input type="date" name="dob" formControlName="dob" class="form-control" />
+                  <div *ngIf="submitted && f.dob.errors" class="invalidfeedback">
+                    <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="passport_number">Passport Number *</label>
+                  <input type="text" name="passport_number" formControlName="passport_number" class="form-control" />
+                  <div *ngIf="submitted && f.passport_number.errors" class="invalidfeedback">
+                    <div *ngIf="f.passport_number.errors.required">Passport Number is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="passport_doi">Pasport Date Of Issue *</label>
+                  <input type="date" name="passport_doi" formControlName="passport_doi" class="form-control" />
+                  <div *ngIf="submitted && f.passport_doi.errors" class="invalidfeedback">
+                    <div *ngIf="f.passport_doi.errors.required">Passport DOE is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="form_passport_doe">Pasport Date Of Expiry *</label>
+                  <input type="date" name="passport_doe" formControlName="passport_doe" class="form-control" />
+                  <div *ngIf="submitted && f.passport_doe.errors" class="invalidfeedback">
+                    <div *ngIf="f.passport_doe.errors.required">Passport DOE is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="form_email">Email *</label>
+                  <input type="email" name="email_id" formControlName="email_id" class="form-control" />
+                  <div *ngIf="submitted && f.email_id.errors" class="invalidfeedback">
+                    <div *ngIf="f.email_id.errors.required">Email is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="form_phone">Mobile Number *</label>
+                      <input type="number" name="mobile_number" formControlName="mobile_number" class="form-control" />
+                      <div *ngIf="submitted && f.mobile_number.errors" class="invalidfeedback">
+                        <div *ngIf="f.mobile_number.errors.required">Mobile Number is required</div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+            <!-- Educational Details -->
+            <div class="card bg-default mb-3">
+              <div class="card-header">Educational Details : </div>
+              <div class="card-body"> 
+            <div class="row">
+              <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="form_name">10th Year *</label>
+                      <input type="date" name="sec_year" formControlName="sec_year" class="form-control" />
+                      <div *ngIf="submitted && f.sec_year.errors" class="invalidfeedback">
+                        <div *ngIf="f.sec_year.errors.required">10th Year is required</div>
+                      </div>
+                    </div>
+              </div>
+                
+              <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="form_name">10th Percentage *</label>
+                    <input type="number" name="sec_percentage" formControlName="sec_percentage" class="form-control" />
+                    <div *ngIf="submitted && f.sec_percentage.errors" class="invalidfeedback">
+                      <div *ngIf="f.sec_percentage.errors.required">10th Percentage is required</div>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="highersec_year">12th Year </label>
+                      <input type="date" name="highersec_year" formControlName="highersec_year" class="form-control" />
+                      <!--<div *ngIf="submitted && f.highersec_year.errors" class="invalidfeedback">
+                        <div *ngIf="f.highersec_year.errors.required">10th Year is required</div>
+                      </div>-->
+                    </div>
+              </div>
+                
+              <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="highersec_percentage">12th Percentage </label>
+                    <input type="number" name="highersec_percentage" formControlName="highersec_percentage" class="form-control" />
+                    <!--<div *ngIf="submitted && f.highersec_percentage.errors" class="invalidfeedback">
+                      <div *ngIf="f.highersec_percentage.errors.required">10th Marks Percentage is required</div>
+                    </div> -->
+                  </div>
+                
+               </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="graduate_year">Graduation Year </label>
+                        <input type="date" name="graduate_year" formControlName="graduate_year" class="form-control" />
+                        <!--<div *ngIf="submitted && f.graduate_year.errors" class="invalidfeedback">
+                          <div *ngIf="f.graduate_year.errors.required">10th Year is required</div>
+                        </div> -->
+                      </div>
+                </div>
+                  
+                <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="graduate_percentage">Graduation Percentage </label>
+                      <input type="number" name="graduate_percentage" formControlName="graduate_percentage" class="form-control" />
+                      <!--<div *ngIf="submitted && f.graduate_percentage.errors" class="invalidfeedback">
+                        <div *ngIf="f.graduate_percentage.errors.required">10th Marks Percentage is required</div>
+                      </div> -->
+                    </div>
+                  
+                </div>
+               </div> 
+
+               <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="masters_year">Master Year </label>
+                        <input type="date" name="masters_year" formControlName="masters_year" class="form-control" />
+                        <!--<div *ngIf="submitted && f.masters_year.errors" class="invalidfeedback">
+                          <div *ngIf="f.masters_year.errors.required">10th Year is required</div>
+                        </div> -->
+                      </div>
+                </div>
+                  
+                <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="masters_percentage">Master Percentage </label>
+                      <input type="number" name="masters_percentage" formControlName="masters_percentage" class="form-control" />
+                      <!-- <div *ngIf="submitted && f.masters_percentage.errors" class="invalidfeedback">
+                        <div *ngIf="f.masters_percentage.errors.required">10th Marks Percentage is required</div>
+                      </div> -->
+                    </div>
+                </div>
+               </div> 
+               <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="experience_stdate">Experience Start Date </label>
+                        <input type="date" name="experience_stdate" formControlName="experience_stdate" class="form-control" />
+                        <!-- <div *ngIf="submitted && f.experience_stdate.errors" class="invalidfeedback">
+                          <div *ngIf="f.experience_stdate.errors.required">10th Year is required</div>
+                        </div> -->
+                      </div>
+                </div>
+                  
+                <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="experience_endate">Experience End Date </label>
+                      <input type="number" name="experience_endate" formControlName="experience_endate" class="form-control" />
+                      <!-- <div *ngIf="submitted && f.experience_endate.errors" class="invalidfeedback">
+                        <div *ngIf="f.experience_endate.errors.required">10th Marks Percentage is required</div>
+                      </div> -->
+                    </div>
+                  
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="form_name">IELTS *</label>
+                        <select id="engCert" formControlName="ielts" placeholder="IELTS" class="form-control" >
+                          <option value="" disabled selected>Select..</option>
+                
+                          <option value="YES">YES</option>
+                          <option value="NO">NO</option>
+                          
+                        </select>
+                        <div *ngIf="submitted && f.ielts.errors" class="invalidfeedback">
+                          <div *ngIf="f.ielts.errors.required">Ielts Yes/No is required</div>
+                        </div>
+                      </div>
+                </div>
+                  
+                <div class="col-sm-4">
+                  <div class="form-group">
+                      <label for="form_name">IELTS BAND </label>
+                      <select id="engCert" formControlName="ielts_band" placeholder="IELTS" class="form-control" >
+                        <option value="" disabled selected>Select BAND</option>
+              
+                        <option value="L">L</option>
+                        <option value="R">R</option>
+                        <option value="W">W</option>
+                        <option value="S">S</option>
+                      </select>
+                      <!-- <div *ngIf="submitted && f.ielts_band.errors" class="invalidfeedback">
+                        <div *ngIf="f.ielts_band.errors.required">ielts band is required</div>
+                      </div> -->
+                    </div>
+                  
+                </div>
+              </div>
+              <!-- row ends-->
+              </div>
+              </div>
+
+            <!-- card deck starts-->
+            <div class="card border-info mb-3">
+            
+                <div class="card-header">Documents Upload Section : </div>
+                
+                <div class="card-body"> 
+                
+            <div class="card-group">
+              <div class="card border-dark mb-3" >
+                <div class="card-header">Passport Copy</div>
+                <div class="card-body text-dark">
+                  <h5 class="card-title">
+                    <i class="fa fa-file"></i>
+                  </h5>
+                    <input type="file" name="passport_copy" id="file" (change)="handleFileInput($event.target.files)" />                  
+                </div>
+              </div>
+              <div class="card border-dark mb-3" >
+                <div class="card-header">10th Marksheet</div>
+                <div class="card-body text-dark">
+                  <h5 class="card-title">
+                    <i class="fa fa-file"></i>
+                  </h5>
+                  <input type="file" name="sec_cert" id="file" (change)="handleSecFileInput($event.target.files)" />
+                </div>
+              </div>
+              <div class="card border-dark mb-3">
+                <div class="card-header">12th Marksheet</div>
+                <div class="card-body text-dark">
+                  <h5 class="card-title">
+                    <i class="fa fa-file"></i>
+                  </h5>
+                  <input type="file" name="higherSec_cert" id="file" (change)="handleHigherSecFileInput($event.target.files)" />
+                </div>
+              </div>
+              <div class="card border-dark mb-3">
+                <div class="card-header">Degree Marksheet</div>
+                <div class="card-body text-dark">
+                  <h5 class="card-title">
+                    <i class="fa fa-file"></i>
+                  </h5>
+                  <input type="file" name="degree_cert" id="file" (change)="handleDegreeFileInput($event.target.files)" />
+                </div>
+              </div>
+            </div>
+            <!-- Card deck ends -->
+        
+        </div>
+      </div>
+
+            
+              <div class="card border-info mb-3">
+                <div class="card-header"> Additional Documents : </div>
+                <div class="card-body">
+                  <div class="col-sm-4">
+
+                  <div class="card border-dark mb-3">
+                    <div class="card-header">ILETS</div>
+                    <div class="card-body text-dark">
+                      <h5 class="card-title">
+                        <i class="fa fa-file"></i>
+                      </h5>
+                      <input type="file" name="ielts_cert" id="file" (change)="handleIeltsFileInput($event.target.files)" />
+              
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group" style="float: right;">
+                    <button [disabled]="loading" class="btn btn-primary" >Submit</button>
+                    
+                    <a routerLink="/" class="btn"><button [disabled]="loading" class="btn btn-dark" >Back</button></a>
+                    <!--<a [routerLink]="['/register']" class="btn btn-link">Register</a>-->
+                  </div>
+                </div>
+              </div>
+          </form>
+        </div>
+</div>

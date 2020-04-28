@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/DataService';
 import * as fileSaver from 'file-saver';
+import { interval } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 interface UserEnq {
   id;
@@ -58,6 +60,7 @@ export class HomeComponent implements OnInit {
   passport_num : '1234',
   name : 'ssss',
   visa_status:'In Progress' } ;
+  counter: any;
 
   ngOnInit() { 
     this.formdata = new FormGroup({
@@ -84,6 +87,14 @@ export class HomeComponent implements OnInit {
       subject : new FormControl('', Validators.required),
       message : new FormControl('', Validators.required)
     });
+    var diff;
+    var future;
+    this.counter = interval(500).pipe(
+      map((x) => {
+         x = 100+1;
+         return x;
+     })
+   );
  } 
 
  onClickSubmit(frmdata) {
@@ -352,5 +363,9 @@ downloadForm(passport: string, fileName: string ) {
   sendQuery() {
     console.log("User :" +this.users);
   }
+
+
+
+
 
 }

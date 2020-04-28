@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="">
+          <img src="../../assets/vob/logo_resize.png" alt="">
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+  
+        <ul class="navbar-nav" style="float: right;">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="">Home
+              <!--<span class="sr-only">(current)</span>--></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/admin">Admin
+              <!--<span class="sr-only">(current)</span>--></a>
+          </li>
+        </ul>
+      </div>
+      </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 mx-auto">
+        <div class="card ">
+          <div class="card-header">
+            <h5 class="card-title text-center">List Of Online Visa Application Details</h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Date Of Birth</th>
+                  <th scope="col">Passport Number</th>
+                  <th scope="col">Passport DateOfIssue</th>
+                  <th scope="col">Passport DateOfExpiry</th>
+                  <th scope="col">Email Id</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">10th Year</th>
+                  <th scope="col">10th Percentage</th>
+                  <th scope="col">12th Year</th>
+                  <th scope="col">12th Percenatage</th>
+                  <th scope="col">Graduation Year</th>
+                  <th scope="col">Graduation Percentage</th>
+                  <th scope="col">Masters Year</th>
+                  <th scope="col">Masters Percentage</th>
+                  <th scope="col">Exp Start Date</th>
+                  <th scope="col">Exp End Date</th>
+                  <th scope="col">Ielts</th>
+                  <th scope="col">Ielts Band</th>
+                  <th scope="col">Passport Copy</th>
+                  <th scope="col">10th Marksheet</th>
+                  <th scope="col">12th Marksheet</th>
+                  <th scope="col">Graduation Marksheet</th>
+                  <th scope="col">Degree Cert</th>
+                  <th scope="col">Ielts Cert</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let onlineform of OnlineVisaFormList">
+                  <td>{{onlineform.first_name}}</td>
+                  <td>{{onlineform.last_name}}</td>
+                  <td>{{onlineform.dob}}</td>
+                  <td>{{onlineform.passport_number}}</td>
+                  <td>{{onlineform.passport_doi}}</td>
+                  <td>{{onlineform.passport_doe}}</td>
+                  <td>{{onlineform.email_id}}</td>
+                  <td>{{onlineform.mobile_number}}</td>
+                  <td>{{onlineform.sec_year}}</td>
+                  <td>{{onlineform.sec_percentage}}</td>
+                  <td>{{onlineform.highersec_cert}}</td>
+                  <td>{{onlineform.highersec_percentage}}</td>
+                  <td>{{onlineform.graduation_year}}</td>
+                  <td>{{onlineform.graduation_percentage}}</td>
+                  <td>{{onlineform.masters_year}}</td>
+                  <td>{{onlineform.masters_percentage}}</td>
+                  <td>{{onlineform.exp_startdate}}</td>
+                  <td>{{onlineform.exp_enddate}}</td>
+                  <td>{{onlineform.ielts}}</td>
+                  <td>{{onlineform.ielts_band}}</td>
+                  <td>{{onlineform.passport_copy}}
+                  <button *ngIf="onlineform.passport_copy !== null" type="button" class="btn btn-info btn-sm"
+                    (click)="downloadFileCopy(onlineform.passport_number, onlineform.passport_copy)">
+                    Download
+                  </button>
+                  </td>
+                  <td>{{onlineform.sec_marksheet}}
+                    <button *ngIf="onlineform.sec_marksheet != 'undefined' 
+                    && onlineform.sec_marksheet != ''
+                    && onlineform.sec_marksheet != null" type="button" class="btn btn-info btn-sm"
+                    (click)="downloadFileCopy(onlineform.passport_number, onlineform.sec_marksheet)">
+                    Download
+                    </button>
+                  </td>
+                  <td>{{onlineform.highersec_marksheet}}
+                    <button *ngIf="onlineform.highersec_marksheet != null
+                    && onlineform.highersec_marksheet != ''
+                    && onlineform.highersec_marksheet != 'undefined'" type="button" class="btn btn-info btn-sm"
+                    (click)="downloadFileCopy(onlineform.passport_number, onlineform.highersec_marksheet)">
+                    Download
+                    </button>
+                  </td>
+                  <td>{{onlineform.graduation_marksheet}}
+                    <button *ngIf="onlineform.graduation_marksheet != null
+                    && onlineform.graduation_marksheet != ''
+                    && onlineform.graduation_marksheet != 'undefined'" type="button" class="btn btn-info btn-sm"
+                    (click)="downloadFileCopy(onlineform.passport_number, onlineform.graduation_marksheet)">
+                    Download
+                    </button>
+                  </td>
+                  <td>{{onlineform.masters_marksheet}}
+                    <button *ngIf="onlineform.masters_marksheet != null
+                    && onlineform.masters_marksheet != ''
+                    && onlineform.masters_marksheet != 'undefined'" type="button" class="btn btn-info btn-sm"
+                    (click)="downloadFileCopy(onlineform.passport_number, onlineform.masters_marksheet)">
+                    Download
+                    </button>
+                  </td>
+                  <td>{{onlineform.ielts_cert}}
+                    <button *ngIf="onlineform.ielts_cert != null
+                    && onlineform.ielts_cert != ''
+                    && onlineform.ielts_cert != 'undefined'" type="button" class="btn btn-info btn-sm"
+                    (click)="downloadFileCopy(onlineform.passport_number, onlineform.ielts_cert)">
+                    Download
+                    </button>
+                  </td>
+                </tr>
+                
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

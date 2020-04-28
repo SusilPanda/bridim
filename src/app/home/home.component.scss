@@ -619,7 +619,47 @@ section.section {
 	background: #699aaa;
 }
 
+/*=======================
+---- 
+*/
 
+#covid19 {
+  width: 100%;
+  height: 40vh;
+  position: relative;
+	background: url(../../assets/vob/about/banner-corona.jpg) top center;
+  background-size: cover;
+}
+.covid19-content {
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  //z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  //padding: 0 15px;
+    
+}
+@media (min-width: 1024px) {
+	#covid19 {
+		//background-attachment: fixed;
+	}
+}
+@media (max-width: 767px) {
+	#covid19 {
+		height: 100vh;
+	}
+	.covid19-content  h2 {
+		font-size: 34px;
+	}
+}
 /*===========================
   --- Director Message ----
 =========================== */
@@ -2013,6 +2053,25 @@ Testing Nav Menu
   //-webkit-transform: rotate(-90deg); 
   // -moz-transform: rotate(-90deg);   
 
+}
+#covidbutton {
+  position: relative;
+  bottom: 20%;
+  right: 0%;
+  left: 17%;
+  border-radius: 4px;
+  height: 20%;
+  width: 20%;
+  //-webkit-transform: rotate(-90deg); 
+  // -moz-transform: rotate(-90deg);   
+
+}
+
+.jumbotron1 {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: .3rem;
 }
 .icon-bar {
   position: fixed;

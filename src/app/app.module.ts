@@ -16,6 +16,9 @@ import {DataService} from '../DataService';
 import { AdminManagementComponent } from './admin-management/admin-management.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { OnlineformComponent } from './onlineform/onlineform.component';
+import { FormsubmitsuccessComponent } from './formsubmitsuccess/formsubmitsuccess.component';
+import { OnlineFormSubmissionManagementComponent } from './online-form-submission-management/online-form-submission-management.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { LoginComponent } from './login/login.component';
     CarouselBasicComponent,
     AdminManagementComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    OnlineformComponent,
+    FormsubmitsuccessComponent,
+    OnlineFormSubmissionManagementComponent
   ],
   imports: [
     BrowserModule,
