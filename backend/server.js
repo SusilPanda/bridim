@@ -59,6 +59,7 @@ var User  = require('./models/user.model.js');
 var UserRequest  = require('./models/userRequest.model.js');
 var VisaApplication  = require('./models/visaApplication.model.js');
 var UserAppointment  = require('./models/userAppointment.model.js');
+var OnlineApplicationForm = require('./models/onlineForm.model.js');
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -272,7 +273,7 @@ router.route('/userRequest/save')
 // User book an appointment mapping
 router.route('/userappointment/:booking_id')
   .get(function (req, res) {
-    console.log("I got a user request get Request");
+    console.log("I got a user booking appointment get Request");
     UserAppointment.findById(req.params.booking_id, function (err, userAppontment) {
       if (err)
         res.send(err);
@@ -281,7 +282,7 @@ router.route('/userappointment/:booking_id')
   });
 router.route('/userappointment')
   .get(function (req, res) {
-    console.log("I got a user request get All Request");
+    console.log("I got a user booking appointment get All Request");
     UserAppointment.find(function (err, userAppontment) {
       if (err)
         res.send(err);
@@ -303,6 +304,150 @@ router.route('/userappointment/save')
 
     });
   });
+
+// online application submit starts
+router.route('/applyonlineform/:application_id')
+  .get(function (req, res) {
+    console.log("I got an applyonlineform get Request");
+    OnlineApplicationForm.findById(req.params.application_id, function (err, userAppontment) {
+      if (err)
+        res.send(err);
+      res.json(userAppontment);
+    })
+  });
+router.route('/applyonlineform')
+  .get(function (req, res) {
+    console.log("I got an applyonlineform get All Request");
+    OnlineApplicationForm.find(function (err, userAppontment) {
+      if (err)
+        res.send(err);
+      res.json(userAppontment);
+    })
+  });
+router.route('/applyonlineform/save') 
+  .post(function (req, res) {
+    console.log("I got an applyonlineform save Request");
+    console.log(req.body);
+
+    OnlineApplicationForm.create(req.body, function (err) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      }
+      res.json({ message: "user appointment created" });
+      sendEmail(JSON.stringify(req.body), 'onlineForm' );
+
+    });
+  });
+
+  //our file upload function.
+router.route('/upload/onlineform')
+.post(function (req, res, next) {
+  var path = '';
+  var passportCopy = '';
+  var secCert = '';
+  var higherSecCert = '';
+  var degreeCert = '';
+  var ieltsCert = '';
+  var passportCopy_path;
+ console.log('Inside online form upload');
+    // No error occured.
+  upload(req, res, function (err) {
+     //path = req.file.path;
+     if (err) {
+      // An error occurred when uploading
+      console.log(err);
+      return res.status(422).send("an Error occured")
+    }
+    console.log(req.files);  
+
+    if (req.files.length > 0) {
+      for (var i = 0; i < req.files.length; i++) {
+              var file = req.files[i];
+              console.log(file.filename);
+              console.log(file.fieldname);
+              //console.log(req.files.length);
+              if (file.fieldname === 'file1') {
+                passportCopy = file.filename;
+                passportCopy_path = file.path;
+              }
+              if (file.fieldname === 'file2') {
+                secCert = file.filename;
+              }
+              if (file.fieldname == 'file3') {
+                higherSecCert = file.filename;
+              }
+              if (file.fieldname == 'file4') {
+                degreeCert = file.filename;
+              }
+              if (file.fieldname == 'file5') {
+                ieltsCert = file.filename;
+              }
+          }
+          console.log(passportCopy);
+          console.log(secCert);
+          console.log(passportCopy_path);
+       
+       // var secCert = req.files[1].fileName;
+       // var higherSecCert = req.files[2].fileName;
+       // var degreeCert = req.files[3].fileName;
+      }
+
+     var onlineForm = req.body;
+     var onlineAppForm = {
+      'first_name': onlineForm.first_name,
+      'last_name':onlineForm.last_name,
+      'dob': onlineForm.dob ,
+      'passport_number': onlineForm.passport_number,
+      'passport_doi' : onlineForm.passport_doi,
+      'passport_doe' : onlineForm.passport_doe,
+      'email_id': onlineForm.email_id,       
+      'mobile_num': onlineForm.mobile_number,
+      'sec_year': onlineForm.sec_year,
+      'sec_percentage': onlineForm.sec_percentage,
+      'highersec_year': onlineForm.highersec_year,
+      'highersec_percentage': onlineForm.highersec_percentage,
+      'graduation_year' : onlineForm.graduate_year,
+      'graduation_percentage': onlineForm.graduate_percentage,
+      'masters_year' : onlineForm.masters_year,
+      'masters_percentage': onlineForm.masters_percentage,
+      'ielts' : onlineForm.ielts,
+      'ielts_band': onlineForm.ielts_band,
+      'passport_copy': passportCopy,
+      'sec_marksheet': secCert,
+      'highersec_marksheet': higherSecCert,
+      'graduation_marksheet': degreeCert,
+      'masters_marksheet': '',
+      'ielts_cert': ieltsCert,
+     }
+      //  var passportCopy = req.files[0].fileName;
+     //onlineForm.passport_copy = passportCopy;
+    // onlineForm.sec_marksheet = secCert;
+    // onlineForm.highersec_marksheet = higherSecCert;
+    // onlineForm.masters_marksheet = degreeCert;
+    // console.log(req.body);
+     //var query = { 'passport_num': req.headers.passport_num };
+     OnlineApplicationForm.create(onlineAppForm, function (err, doc) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+       } else {
+         console.log(doc);
+         sendEmail(JSON.stringify(req.body), 'onlineAppForm' );
+         //res.json({ message: "filename for passport num updated" });
+       }
+       //return res.send('Succesfully saved.');
+     });
+     return res.json({ message: "user visa online application form uploaded" }); 
+});
+});
+
+// get uploaded user file
+router.get('/download/onlineform/:fileName', function (req, res, next) {
+  var filepath = path.join(__dirname, '.././uploads/') + '/'+ req.params.fileName;
+  res.sendFile(filepath);
+});
+// End of online application submit 
 
 router.route('/uservisastatus/:passportnum')
   .get(function (req, res) {
@@ -385,7 +530,17 @@ var store = multer.diskStorage({
 
 });
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
-var upload = multer({storage: store}).single('file');
+var upload = multer({storage: store, limits: {
+  fileSize : 1024 * 1024 * 5 
+}}).any();
+/*.fields(filefields);
+var filefields = [
+{ name: 'file', maxCount: 1 },
+  { name: 'file1', maxCount: 1 },
+  { name: 'file2', maxCount: 1 },
+  { name: 'file3', maxCount: 1 }
+]; */
+//.array('file');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
@@ -512,7 +667,18 @@ function sendEmail(content, isEnq) {
     userEn.first_name ,  userEn.last_name, userEn.email_id, userEn.mobile_num, userEn.date_of_birth, userEn.qualification, 
     userEn.applyingFor, userEn.prefCountry, userEn.engLangCertificates );
     var sub = 'User Enquiry';
-  } else {
+  } else if (isEnq == 'onlineAppForm') {
+    textM = format("First Name : {0}, \nLast Name : {1}, \nEmailId : {2}, \nMobile Number : {3}, \nDOB : {4}, \nPassport Number : {5}, \nPassport DOI : {6}, \nPassport DOE : {7},"
+    + " \n10th Year : {8}, \n10th Percentage : {9}, \n12th Year : {10}, \n12th Percentage : {11}, \nGraduation Year : {12}, \nGraduation Percentage : {13}, \nMaster's Year : {14}, \nMasters Percentage : {15}, \nIELTS : {16}, \nIELTS Band : {17}"
+    +"\nPassport Copy : {18}, \n10th Marksheet : {19}, \n12th Marksheet : {20}, \nGraduate/Degree Marksheet : {21}, \nIELTS Certificate : {22}", 
+    userEn.first_name ,  userEn.last_name, userEn.email_id, userEn.mobile_number, userEn.dob, userEn.passport_number, userEn.passport_doi, userEn.passport_doe, 
+    userEn.sec_year, userEn.sec_percentage, 
+    userEn.highersec_year, userEn.highersec_percentage, userEn.graduate_year, userEn.graduate_percentage,
+    userEn.masters_year, userEn.masters_percentage, userEn.ielts, userEn.ielts_band, 
+    userEn.passport_copy, userEn.sec_cert, userEn.highersec_cert, userEn.degree_cert, userEn.ielts_cert );
+    var sub = 'Online Application Form';
+  } 
+  else {
     textM = format("Name : {0}, \nEmail : {1}, \nMobile Number : {2}, \nSubject : {3}, \nMessage : {4}", userEn.name ,  userEn.email,
     userEn.mobileNumber, userEn.subject, userEn.message );
     var sub = 'User booked an appointment';
