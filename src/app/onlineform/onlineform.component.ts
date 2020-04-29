@@ -20,6 +20,8 @@ export class OnlineformComponent implements OnInit {
     status: string = "Application Form Submitted Successfully, We will get back to you";
     registerMsg = "";
     fileSubmittedSuccess : boolean = false;
+    uploadError = false;
+    uploadErrorFileSizeExceed = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -170,6 +172,8 @@ export class OnlineformComponent implements OnInit {
     uploadFileForm.append('graduate_percentage', onlineForm.graduate_percentage);
     uploadFileForm.append('masters_year', onlineForm.masters_year);
     uploadFileForm.append('masters_percentage', onlineForm.masters_percentage);
+    uploadFileForm.append('experience_stdate', onlineForm.experience_stdate);
+    uploadFileForm.append('experience_endate', onlineForm.experience_endate);
     uploadFileForm.append('ielts', onlineForm.ielts);
     uploadFileForm.append('ielts_band', onlineForm.ielts_band);
 
@@ -177,17 +181,36 @@ export class OnlineformComponent implements OnInit {
     this.dataService.uploadOnlineVisaForm(uploadFileForm).subscribe(data => {
       // console.log(data);
       //this.visaAppStatus = data;
-      //console.log(data);
+      console.log(data);
       if(data != null) {
         this.fileSubmittedSuccess = true;
         console.log('online form application submitted');
-        this.router.navigate(['/submitsuccess']);
+        this.uploadError = false;
+        this.uploadErrorFileSizeExceed = false;
         this.loading = false;
+        this.router.navigate(['/submitsuccess']);
+        
       } else {
+        console.log('Error in upload ');
         this.fileSubmittedSuccess = false;
+        this.uploadError = true;
+        this.uploadErrorFileSizeExceed = false;
+        this.loading = false;
         return false;
       }
       //this.fileSubmittedSuccess = true;
+    },
+    error => {
+      console.log('Error in upload ');
+      this.uploadError = true;
+      console.log(error);
+      //console.log(error.status);
+      if (error.status === 422 && error.error.code === 'LIMIT_FILE_SIZE') {
+        this.uploadErrorFileSizeExceed = true;
+      }
+        this.fileSubmittedSuccess = false;
+        this.loading = false;
+        return false;
     });
   }
 

@@ -357,10 +357,7 @@ router.route('/upload/onlineform')
     if (err instanceof multer.MulterError) {
       // A Multer error occurred when uploading.
       console.log(err);
-      if(err.code === 'LIMIT_FILE_SIZE') {
-        res.status(422).send('File too large');
-      }
-      res.status(422).send(err);
+      return res.status(422).send(err);
     } else if (err) {
       // An unknown error occurred when uploading
       // An error occurred when uploading
@@ -415,6 +412,8 @@ router.route('/upload/onlineform')
       'graduation_percentage': onlineForm.graduate_percentage,
       'masters_year' : onlineForm.masters_year,
       'masters_percentage': onlineForm.masters_percentage,
+      'exp_startdate' :  onlineForm.experience_stdate,
+      'exp_enddate' : onlineForm.experience_endate,
       'ielts' : onlineForm.ielts,
       'ielts_band': onlineForm.ielts_band,
       'passport_copy': passportCopy,
@@ -529,7 +528,7 @@ var store = multer.diskStorage({
 });
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
 var upload = multer({storage: store, limits: {
-  fileSize : 1024 * 1024 * 1 //For multipart forms, the max file size (in bytes) this 2 MB 
+  fileSize : 1024 * 1024 * 3 //For multipart forms, the max file size (in bytes) this 3 MB 
 }}).any();
 /*.fields(filefields);
 var filefields = [
