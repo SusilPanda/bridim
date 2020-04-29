@@ -354,7 +354,15 @@ router.route('/upload/onlineform')
     // No error occured.
   upload(req, res, function (err) {
      //path = req.file.path;
-     if (err) {
+    if (err instanceof multer.MulterError) {
+      // A Multer error occurred when uploading.
+      console.log(err);
+      if(err.code === 'LIMIT_FILE_SIZE') {
+        res.status(422).send('File too large');
+      }
+      res.status(422).send(err);
+    } else if (err) {
+      // An unknown error occurred when uploading
       // An error occurred when uploading
       console.log(err);
       return res.status(422).send("an Error occured")
@@ -387,10 +395,6 @@ router.route('/upload/onlineform')
           console.log(passportCopy);
           console.log(secCert);
           console.log(passportCopy_path);
-       
-       // var secCert = req.files[1].fileName;
-       // var higherSecCert = req.files[2].fileName;
-       // var degreeCert = req.files[3].fileName;
       }
 
      var onlineForm = req.body;
@@ -420,13 +424,7 @@ router.route('/upload/onlineform')
       'masters_marksheet': '',
       'ielts_cert': ieltsCert,
      }
-      //  var passportCopy = req.files[0].fileName;
-     //onlineForm.passport_copy = passportCopy;
-    // onlineForm.sec_marksheet = secCert;
-    // onlineForm.highersec_marksheet = higherSecCert;
-    // onlineForm.masters_marksheet = degreeCert;
-    // console.log(req.body);
-     //var query = { 'passport_num': req.headers.passport_num };
+
      OnlineApplicationForm.create(onlineAppForm, function (err, doc) {
       if (err) {
         console.log(err);
@@ -525,13 +523,13 @@ var store = multer.diskStorage({
     cb(null, './uploads/');
   },
   filename : function(req, file, cb) {
-    cb(null, file.originalname);
+    cb(null, Date.now() + '-' + file.originalname);
   }
 
 });
 //define the type of upload multer would be doing and pass in its destination, in our case, its a single file with the name photo
 var upload = multer({storage: store, limits: {
-  fileSize : 1024 * 1024 * 5 
+  fileSize : 1024 * 1024 * 1 //For multipart forms, the max file size (in bytes) this 2 MB 
 }}).any();
 /*.fields(filefields);
 var filefields = [
@@ -559,14 +557,18 @@ router.post('/upload', function (req, res, next) {
         }  
        // No error occured.
 
-        path = req.file.path;
-        console.log(req.file.filename);
-        console.log(req.headers.passport_num);
-        var query = { 'passport_num': req.headers.passport_num };
+        //path = req.file.path;
+        console.log(req.files);
+        console.log(req.body.passport_num);
+        if (req.files.length > 0) {
+          var file = req.files[0];
+        }
+        //console.log(file);
+        var query = { 'passport_num': req.body.passport_num };
         VisaApplication.findOneAndUpdate(query, 
           {
             $set: {
-              'file_name' : req.file.filename
+              'file_name' : file.filename
              }
           }, function (err, doc) {
           if (err) {

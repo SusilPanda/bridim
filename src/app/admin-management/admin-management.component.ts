@@ -185,7 +185,7 @@ fileProgress(fileInput: any) {
     const uploadFileForm: FormData = new FormData();
     uploadFileForm.append('file', this.fileToUpload, this.fileToUpload.name);
     uploadFileForm.append('passport_num', this.passportForFileUpload);
-    this.dataService.uploadVisaForm(uploadFileForm, this.passportForFileUpload).subscribe(data => {
+    this.dataService.uploadVisaForm(uploadFileForm).subscribe(data => {
       // console.log(data);
       //this.visaAppStatus = data;
       //console.log(data);

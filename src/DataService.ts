@@ -77,9 +77,9 @@ export class DataService {
     }
 
     //Upload Visa Form
-    uploadVisaForm(uploadForm: any, passport: string) {
-        let headers =  {headers: new  HttpHeaders({ 'passport_num': passport})};
-        return this.http.post(ServiceConstant.HOST + '/api/upload', uploadForm, headers);
+    uploadVisaForm(uploadForm: any) {
+        //let headers =  {headers: new  HttpHeaders({ 'passport_num': passport})};
+        return this.http.post(ServiceConstant.HOST + '/api/upload', uploadForm);
     }
 
      //Download Visa Form
