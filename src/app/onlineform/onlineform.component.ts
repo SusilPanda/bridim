@@ -39,7 +39,7 @@ export class OnlineformComponent implements OnInit {
           last_name: [null, Validators.required],
           dob: [null, Validators.required],
           passport_number: [null, Validators.required],
-          passport_doi: [null, Validators.required, ],
+          passport_doi: [null, Validators.required ],
           passport_doe: [null, Validators.required],
           email_id: ['', Validators.required],
           mobile_number: ['', Validators.required],
