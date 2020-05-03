@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {DataService } from '../../DataService';
+
 
 @Component({
   selector: 'app-onlineform',
@@ -38,7 +39,7 @@ export class OnlineformComponent implements OnInit {
           last_name: [null, Validators.required],
           dob: [null, Validators.required],
           passport_number: [null, Validators.required],
-          passport_doi: [null, Validators.required],
+          passport_doi: [null, Validators.required, ],
           passport_doe: [null, Validators.required],
           email_id: ['', Validators.required],
           mobile_number: ['', Validators.required],
@@ -70,6 +71,14 @@ export class OnlineformComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+     /*const isValidDate = (c: FormControl) => {
+      const DATE_REGEXP = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+      return DATE_REGEXP.test(c.value) || c.value === '' ? null : {
+        validateEmail: {
+          valid: false
+        }
+      };
+    }*/
     // convenience getter for easy access to form fields
     get f() { return this.onlineForm.controls; }
 
