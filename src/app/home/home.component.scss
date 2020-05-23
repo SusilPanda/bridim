@@ -2225,7 +2225,16 @@ Testing Nav Menu
 .fb_dialog.fb_dialog_advanced {
   left: 18pt;
 }
-
+.fb_customer_chat_bubble_animated_no_badge {
+  background: none !important;
+  border-radius: 50% !important;
+  bottom: 50pt !important;
+  display: inline !important;
+  padding: 0px !important;
+  position: fixed !important;
+  left: 8pt !important;
+  top: auto !important;
+}
 /* The following are for the chat box, on display and on hide */
 iframe.fb_customer_chat_bounce_in_v2 {
   left: 9pt;
