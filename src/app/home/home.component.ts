@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
      })
    );
 
-   this.initFacebookService();
+  // this.initFacebookService();
  } 
 
  private initFacebookService(): void {
