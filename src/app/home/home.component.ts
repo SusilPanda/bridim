@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService,
               private facebookService: FacebookService) {
                 let initParams: InitParams = {
-                  appId: '1234566778',
+                 // appId: '1234566778',
                   xfbml: true,
                   version: 'v2.8'
                 };
