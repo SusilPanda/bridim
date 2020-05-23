@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { OnlineformComponent } from './onlineform/onlineform.component';
 import { FormsubmitsuccessComponent } from './formsubmitsuccess/formsubmitsuccess.component';
 import { OnlineFormSubmissionManagementComponent } from './online-form-submission-management/online-form-submission-management.component';
+import { FacebookModule } from 'ngx-facebook';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { OnlineFormSubmissionManagementComponent } from './online-form-submissio
     OwlModule,
     FormsModule,
     ReactiveFormsModule ,
+    FacebookModule.forRoot(),
     NgxYoutubePlayerModule.forRoot()
   ],
   providers: [DataService],

@@ -4,6 +4,7 @@ import { DataService } from 'src/DataService';
 import * as fileSaver from 'file-saver';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { FacebookService, InitParams } from 'ngx-facebook';
 
 interface UserEnq {
   id;
@@ -34,7 +35,15 @@ interface VisaAppStatus {
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+              private facebookService: FacebookService) {
+                let initParams: InitParams = {
+                  appId: '1234566778',
+                  xfbml: true,
+                  version: 'v2.8'
+                };
+                facebookService.init(initParams);
+               }
   title = 'bridim';
   images1 = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
   formdata;
@@ -95,7 +104,14 @@ export class HomeComponent implements OnInit {
          return x;
      })
    );
+
+   this.initFacebookService();
  } 
+
+ private initFacebookService(): void {
+  const initParams: InitParams = { xfbml:true, version:'v3.2'};
+  this.facebookService.init(initParams);
+}
 
  onClickSubmit(frmdata) {
    
