@@ -21,7 +21,8 @@
           <li class="nav-item">
               <a class="nav-link" href="#" data-toggle="modal" data-target="#enqModal">Enquiry</a>
           </li>
-          <li class="nav-item">
+         
+          <!--<li class="nav-item">
               <a class="nav-link" href="#about"  >About</a>
           </li>
           <li class="nav-item">
@@ -32,26 +33,29 @@
           </li>
           <li class="nav-item">
               <a class="nav-link" href="#gallery" >Gallery</a>
-          </li>
+          </li> -->
           <li class="nav-item">
               <a class="nav-link" href="#contact" >Offices</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" routerLink = "/login">Admin</a>
+            <a class="nav-link" href="#gallery">Gallery</a>  
           </li>
-          <!--
           <li class="nav-item dropdown mr-sm-2">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              ABOUT US
+              MORE
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#about">About</a>
               <a class="dropdown-item" href="#portfolio">Portfolio</a>
-              <a class="dropdown-item" href="#testimonial">Testimonial</a>
+              <a class="dropdown-item" href="#testimonialsnew">Testimonial</a>           
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#gallery">Gallery</a>
+              <a class="dropdown-item" routerLink = "/applyOnline" >Apply-Online</a>
+            
+            <div class="dropdown-divider" ></div>
+            <a class="dropdown-item" routerLink = "/login">Admin</a>
             </div>
-          </li> -->
+          </li>
+          
           <!--<li class="nav-item">
           <a class="nav-link" href="https://wa.me/+6590516498/?text=urlencodedtext" target="_blank">
             <img src="../assets/vob/whatsapp_icon_logo_1.png" alt="">
@@ -145,14 +149,14 @@
             <!--<div class="embed-responsive .embed-responsive-1by1            ">
               <img alt="Card image cap" class="card-img-top embed-responsive-item" src="../../assets/vob/about/corona-banner1.jpg" />
            </div> -->
-           <div class="card mb-3">
+           <!-- <div class="card mb-3">
             <img src="../../assets/vob/about/corona-banner1.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <button  class="btn btn-warning mar-top5" style="font-weight:bold; font-size: larger;" type="submit" routerLink = "/applyOnline">
-                Apply Now
+                Apply Online
               </button>
             </div>
-          </div>
+          </div> -->
          <!-- <div class="card bg-dark text-white">
             <img src="../../assets/vob/about/corona-banner4.jpg" class="card-img" alt="...">
             <div class="card-img-overlay">
@@ -168,7 +172,53 @@
              </p>-->
              <p>Our organization does the best of the efforts to make the dream of global education come true for the young aspirants of our nation. Not only the youth of our nation but also the international institutes that we cater to have come to the realization of the effort we put in for the betterment of human resources on a global scale.              
             <p>
-            
+            <section class="section-counter" data-stellar-background-ratio="0.5">
+             <div class="container">
+              <div class="row appear stats">
+                <div class="col-md-3">
+                  <div class="align-center color-white txt-shadow">
+                    <div class="icon">
+                      <i class="fa fa-graduation-cap fa-5x"></i>
+                    </div>
+                    <strong id="counter-coffee" class="number">
+                      <animated-digit [digit]="850" [duration]="500"></animated-digit>+
+                    </strong><br>
+                    <span class="text">STUDENT VISAS</span>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="align-center color-white txt-shadow">
+                    <div class="icon">
+                      <i class="fa fa-plane fa-5x"></i>
+                    </div>
+                    <strong id="counter-music" class="number">
+                      <animated-digit [digit]="550" [duration]="500"></animated-digit>+</strong><br>
+                    <span class="text">TOURIST VISAS</span>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="align-center color-white txt-shadow">
+                    <div class="icon">
+                      <i class="fa fa-university fa-5x"></i>
+                    </div>
+                    <strong id="counter-clock" class="number">
+                      <animated-digit [digit]="1000" [duration]="500"></animated-digit> +
+                    </strong><br>
+                    <span class="text">COLLEGES</span>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="align-center color-white txt-shadow">
+                    <div class="icon">
+                      <i class="fa fa-heart fa-5x"></i>
+                    </div>
+                    <strong id="counter-heart" class="number">
+                      <animated-digit [digit]="478" [duration]="500"></animated-digit>+</strong><br>
+                    <span class="text">TRUSTED CLIENTS</span>
+                  </div>
+                </div>
+              </div>
+            </div></section>
             <div class="imgbutton">
               <div>
                 <button class="btn btn-default custom-btn" type="submit" data-toggle="modal" data-target="#sidebarModal">
@@ -452,7 +502,7 @@
      
   
   <!--Why choose US -->
-  <section id="newcontact" class="section pad-bot30">
+  <section id="newcontact" class="section ">
     <div class="container">
       <div class="col-md-12">
         <h3 class="section-title">Why Choose US</h3>
@@ -575,7 +625,9 @@
               <div class="icon">
                 <i class="fa fa-graduation-cap fa-5x"></i>
               </div>
-              <strong id="counter-coffee" class="number">850+</strong><br>
+              <strong id="counter-coffee" class="number">
+                <animated-digit [digit]="850" [duration]="1000"></animated-digit>+
+              </strong><br>
               <span class="text">STUDENT VISAS</span>
             </div>
           </div>
@@ -584,7 +636,8 @@
               <div class="icon">
                 <i class="fa fa-plane fa-5x"></i>
               </div>
-              <strong id="counter-music" class="number">550+</strong><br>
+              <strong id="counter-music" class="number">
+                <animated-digit [digit]="550" [duration]="1000"></animated-digit>+</strong><br>
               <span class="text">TOURIST VISAS</span>
             </div>
           </div>
@@ -593,7 +646,8 @@
               <div class="icon">
                 <i class="fa fa-university fa-5x"></i>
               </div>
-              <strong id="counter-clock" class="number">1000+</strong><br>
+              <strong id="counter-clock" class="number">
+                <animated-digit [digit]="1000" [duration]="1000"></animated-digit> +</strong><br>
               <span class="text">COLLEGES</span>
             </div>
           </div>
@@ -602,7 +656,8 @@
               <div class="icon">
                 <i class="fa fa-heart fa-5x"></i>
               </div>
-              <strong id="counter-heart" class="number">478</strong><br>
+              <strong id="counter-heart" class="number">
+                <animated-digit [digit]="478" [duration]="1000"></animated-digit>+</strong><br>
               <span class="text">TRUSTED CLIENTS</span>
             </div>
           </div>

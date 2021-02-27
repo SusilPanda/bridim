@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from 'src/DataService';
 import * as fileSaver from 'file-saver';
@@ -33,7 +33,7 @@ interface VisaAppStatus {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   constructor(private dataService: DataService,
               private facebookService: FacebookService) {
@@ -71,6 +71,9 @@ export class HomeComponent implements OnInit {
   visa_status:'In Progress' } ;
   counter: any;
 
+  @ViewChild("oneItem") oneItem: any;
+  @ViewChildren("count") count: QueryList<any>;
+
   ngOnInit() { 
     this.formdata = new FormGroup({
       id : new FormControl(''),
@@ -85,6 +88,8 @@ export class HomeComponent implements OnInit {
       engLangCertificates: new FormControl('', Validators.required),
       status: new FormControl('Requested')
     });
+
+    
 
     this.isVisaStatusCheckActive = false;
 
@@ -107,6 +112,44 @@ export class HomeComponent implements OnInit {
 
   // this.initFacebookService();
  } 
+
+ onContainerScroll(event) {
+  console.log(event);
+  this.animateCount();
+ }
+
+ ngAfterViewInit() {
+  this.animateCount();
+ }
+
+animateCount() {
+  let _this = this;
+
+  let single = this.oneItem.nativeElement.innerHTML;
+
+  this.counterFunc(single, this.oneItem, 7000);
+
+  this.count.forEach(item => {
+    _this.counterFunc(item.nativeElement.innerHTML, item, 2000);
+  });
+}
+
+counterFunc(end: number, element: any, duration: number) {
+  let range, current: number, step, timer;
+
+  range = end - 0;
+  current = 0;
+  step = Math.abs(Math.floor(duration / range));
+
+  timer = setInterval(() => {
+    current += 1;
+    element.nativeElement.textContent = current;
+    if (current == end) {
+      clearInterval(timer);
+    }
+  }, step);
+}
+
 
  private initFacebookService(): void {
   const initParams: InitParams = { xfbml:true, version:'v3.2'};

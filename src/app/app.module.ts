@@ -30,6 +30,7 @@ import { InfoMalaysiaComponent } from './moreinfo/info-malaysia/info-malaysia.co
 import { InfoJapanComponent } from './moreinfo/info-japan/info-japan.component';
 import { InfoUsaComponent } from './moreinfo/info-usa/info-usa.component';
 import { InfoEuropeComponent } from './moreinfo/info-europe/info-europe.component';
+import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { InfoEuropeComponent } from './moreinfo/info-europe/info-europe.componen
     InfoMalaysiaComponent,
     InfoJapanComponent,
     InfoUsaComponent,
-    InfoEuropeComponent
+    InfoEuropeComponent,
+    AnimatedDigitComponent
   ],
   imports: [
     BrowserModule,

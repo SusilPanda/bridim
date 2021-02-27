@@ -372,9 +372,14 @@ section.section {
 ============================= */
 
 #parallax1{
-	background-image: url(../../assets/vob/bg_counts1.jpg);
+  background-image: url(../../assets/vob/bg_counts1.jpg);
+  display: none;
 }
 
+.section-counter {
+	margin:0;
+	//padding: 80px 0 60px 0;
+}
 #testimonials{
     //background-image: url(../../assets/vob/beach_bg.jpg);
     //opacity: 0.5;
@@ -598,7 +603,37 @@ section.section {
 	}
 	.intro-content  h2 {
 		font-size: 34px;
-	}
+  }
+  .section-counter {
+    display: none;
+    height: 10vh;
+    font-size: 14px;
+
+  }
+  .section-counter .row {
+    display: none;
+    //flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .section-counter .fa-5x {
+    font-size: 2em;
+  }
+  .section-counter .stats .icon {
+    margin: 0 0 5px 0;
+  }
+  
+  .section-counter .stats strong.number {
+    font-size: 10px;
+  }
+  
+  .section-counter .stats span.text {
+    font-weight: 200;
+    font-size: 14px;
+  }
+  #parallax1 {
+    display: flex;
+  }
 }
 
 .btn-get-started {
@@ -1098,7 +1133,7 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 .stats strong.number {
-	font-size: 38px;
+	font-size: 30px;
 }
 
 .stats span.text {
@@ -2045,7 +2080,8 @@ Testing Nav Menu
 
 #mybutton {
   position: fixed;
-  bottom: 0%;
+  bottom: 1%;
+  //top: 10%;
   right: 3%;
   border-radius: 4px;
   //height: 120px;
