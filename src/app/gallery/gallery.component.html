@@ -1,0 +1,252 @@
+<!-- section works -->
+<section id="newgallery" class="section appear clearfix">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="section-title">Gallery</h3>
+        <div class="section-title-divider"></div>
+      </div>
+    </div>
+
+    <div class="row mar-bot20 text-center">
+      <!--<nav id="filter" class="nav nav-pills col-md-12 text-center">-->
+      <ul id="filter" class="nav nav-pills col-md-12 justify-content-center">
+        <li class="nav-item"><a href="#bridim_video" class="nav-link active btn btn-small" data-toggle="tab">VIDEOS</a>
+        </li>
+        <li class="nav-item"><a href="#bridim_images" class="nav-link btn btn-small" data-toggle="tab">IMAGES</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-content">
+      <div id="bridim_video" class="tab-pane active">
+        
+        <div id="video" class="carousel slide" data-ride="carousel" data-interval="false">
+          <ul>
+            
+            <li>Test Data </li>
+            <li *ngFor = "let vi of videosList">
+              <div *ngIf="videosList.length>1">OK</div>
+              {{vi.id}}
+            </li>
+          </ul>
+          <!-- Left and Right arrow -->
+          <!--<a class="carousel-control-prev" href="#video" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#video" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a> -->
+          <!--Controls-->
+          <div class="controls-top align-center">
+            <a class="black-text" href="#video" data-slide="prev"><i class="fa fa-angle-left fa-3x pr-3"></i></a>
+            <a class="black-text" href="#video" data-slide="next"><i class="fa fa-angle-right fa-3x pl-3"></i></a>
+          </div>
+          <!--/.Controls-->
+          <!-- Indicators -->
+          <ul class="carousel-indicators">
+            <li data-target="#video" data-slide-to="0" class="active"></li>
+            <li data-target="#video" data-slide-to="1"></li>
+          </ul>
+          
+          <!-- The slideshow -->
+          <div class="carousel-inner" role="listbox">
+            
+            <div class="carousel-item" *ngFor="let vid of videosList">
+              {{vid.link}}
+              <!-- End of carousel-item-->
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <iframe src='{{vid.link}}' frameborder="10"
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen></iframe>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End of carousel-item-->
+          </div><!-- End of carousel-inner-->
+
+         </div><!-- End of carousel-slide-->
+        </div><!-- End of bridim-video-->
+
+
+      <div id="bridim_images" class="tab-pane">
+        <!-- The image slideshow -->
+        <div id="images" class="carousel slide" data-ride="carousel" data-interval="false">
+          <!-- Left and Right arrow -->
+          <!--<a class="carousel-control-prev" href="#images" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#images" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a> -->
+          <div class="controls-top align-center">
+              <a class="black-text" href="#images" data-slide="prev"><i class="fa fa-angle-left fa-3x pr-3"></i></a>
+              <a class="black-text" href="#images" data-slide="next"><i class="fa fa-angle-right fa-3x pl-3"></i></a>
+            </div>
+          <!-- Indicators -->
+          <ul class="carousel-indicators">
+            <li data-target="#images" data-slide-to="0" class="active"></li>
+            <li data-target="#images" data-slide-to="1"></li>
+          </ul>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_21.jpeg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_22.jpeg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_23.jpeg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <!--new change ends-->
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_24.jpeg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_17.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_18.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_20.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_16.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo_19.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo14.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo8.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo9.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo10.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo11.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo12.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo4.png" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo6.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div> 
+                <div class="col-lg-4">
+                  <div class="">
+                    <img src="../assets/vob/gallery/photo5.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row mar-top20">
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo1.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo2.png" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo3.jpg" alt="Speaker 2" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="row mar-top20">
+                
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo7.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="speaker">
+                    <img src="../assets/vob/gallery/photo_13.jpg" alt="Speaker 1" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            
+          </div><!-- End of Carousel-->
+      </div><!-- End of bridim images-->
+      
+    </div><!-- End of tab-content-->
+  </div>
+</section>

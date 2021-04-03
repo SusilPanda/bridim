@@ -5,8 +5,9 @@ import * as fileSaver from 'file-saver';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FacebookService, InitParams } from 'ngx-facebook';
+import { AOS } from 'aos';
 
-interface UserEnq {
+interface UserEnq { 
   id;
   name;
   emailid;
@@ -111,6 +112,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
    );
 
   // this.initFacebookService();
+  //AOS.init();
  } 
 
  onContainerScroll(event) {

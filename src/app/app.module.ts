@@ -31,6 +31,7 @@ import { InfoJapanComponent } from './moreinfo/info-japan/info-japan.component';
 import { InfoUsaComponent } from './moreinfo/info-usa/info-usa.component';
 import { InfoEuropeComponent } from './moreinfo/info-europe/info-europe.component';
 import { AnimatedDigitComponent } from './animated-digit/animated-digit.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AnimatedDigitComponent } from './animated-digit/animated-digit.componen
     InfoJapanComponent,
     InfoUsaComponent,
     InfoEuropeComponent,
-    AnimatedDigitComponent
+    AnimatedDigitComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ import { AnimatedDigitComponent } from './animated-digit/animated-digit.componen
     FacebookModule.forRoot(),
     NgxYoutubePlayerModule.forRoot()
   ],
+  exports: [GalleryComponent],
   providers: [DataService],
   bootstrap: [AppComponent]
 })
