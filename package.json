@@ -28,7 +28,7 @@
     "core-js": "^2.6.12",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "file-saver": "^2.0.5",
     "flexslider": "^2.7.2",
     "font-awesome": "^4.7.0",
